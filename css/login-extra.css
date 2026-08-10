@@ -1,0 +1,2 @@
+.login-message { color: #ef4444; font-size: 0.95rem; margin-top: 14px; display: none; }
+.login-message.visible { display: block; }

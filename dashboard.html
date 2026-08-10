@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBudget Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div>
+                    <h2>SmartBudget</h2>
+                    <p>AI Expense Manager</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="#" class="sidebar-link active" data-panel="dashboard-panel"><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a>
+                <a href="#" class="sidebar-link" data-panel="income-panel"><i class="fa-solid fa-money-bill-wave"></i><span>Income</span></a>
+                <a href="#" class="sidebar-link" data-panel="expenses-panel"><i class="fa-solid fa-credit-card"></i><span>Expenses</span></a>
+                <a href="#" class="sidebar-link" data-panel="budget-panel"><i class="fa-solid fa-wallet"></i><span>Budget</span></a>
+                <a href="#" class="sidebar-link" data-panel="savings-panel"><i class="fa-solid fa-bullseye"></i><span>Savings Goals</span></a>
+                <a href="#" class="sidebar-link" data-panel="bills-panel"><i class="fa-solid fa-file-invoice-dollar"></i><span>Bills & EMI</span></a>
+                <a href="#" class="sidebar-link" data-panel="reports-panel"><i class="fa-solid fa-chart-pie"></i><span>Reports</span></a>
+                <a href="#" class="sidebar-link" data-panel="ai-panel"><i class="fa-solid fa-robot"></i><span>AI Insights</span></a>
+                <a href="#" class="sidebar-link" data-panel="transactions-panel"><i class="fa-solid fa-calendar-check"></i><span>Transactions</span></a>
+                <a href="#" class="sidebar-link" data-panel="settings-panel"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Upgrade to Premium</p>
+                <a href="#" class="upgrade-btn">Upgrade Now</a>
+            </div>
+        </aside>
+
+        <div class="dashboard-main">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p>Welcome back, Shital 👋</p>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="month-select-box">
+                        <select id="monthSelector">
+                            <option>July 2025</option>
+                            <option>June 2025</option>
+                            <option>May 2025</option>
+                        </select>
+                    </div>
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input id="transactionSearch" type="search" placeholder="Search transactions">
+                    </div>
+                    <div class="notifications">
+                        <button id="notificationToggle" class="icon-button">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="badge-count">3</span>
+                        </button>
+                        <div class="notification-dropdown">
+                            <h4>Notifications</h4>
+                            <p>Budget limit updated successfully.</p>
+                            <p>New AI insight is available.</p>
+                            <p>Monthly report ready to view.</p>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <button id="profileToggle" class="profile-button">
+                            <img src="images/profile-avatar.svg" alt="Profile">
+                            <span>Shital</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="profile-dropdown">
+                            <a href="#">My Profile</a>
+                            <a href="#">Settings</a>
+                            <a href="#" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="dashboard-content">
+
+                <section class="module-panel dashboard-panel active-panel" data-panel="dashboard-panel">
+                    <section class="summary-grid">
+                        <article class="summary-card">
+                            <div class="summary-card-icon income">
+                                <img src="images/icon-income.svg" alt="Income icon">
+                            </div>
+                            <div>
+                                <span>Total Income</span>
+                                <h3>₹75,000</h3>
+                                <p>12% from last month</p>
+                            </div>
+                        </article>
+                        <article class="summary-card">
+                            <div class="summary-card-icon expense">
+                                <img src="images/icon-expenses.svg" alt="Expenses icon">
+                            </div>
+                            <div>
+                                <span>Total Expenses</span>
+                                <h3>₹48,500</h3>
+                                <p>5% from last month</p>
+                            </div>
+                        </article>
+                        <article class="summary-card">
+                            <div class="summary-card-icon savings">
+                                <img src="images/icon-savings.svg" alt="Savings icon">
+                            </div>
+                            <div>
+                                <span>Total Savings</span>
+                                <h3>₹26,500</h3>
+                                <p>18% from last month</p>
+                            </div>
+                        </article>
+                        <article class="summary-card">
+                            <div class="summary-card-icon budget">
+                                <img src="images/icon-budget.svg" alt="Budget icon">
+                            </div>
+                            <div>
+                                <span>Remaining Budget</span>
+                                <h3>₹11,200</h3>
+                                <p>23% of total budget left</p>
+                            </div>
+                        </article>
+                    </section>
+
+                    <section class="dashboard-view first-viewport">
+                        <div class="panel card-glow income-chart-panel">
+                            <div class="panel-header">
+                                <h3>Income vs Expenses</h3>
+                                <span>This Year</span>
+                            </div>
+                            <canvas id="incomeExpenseChart"></canvas>
+                        </div>
+
+                        <div class="panel card-glow expense-chart-panel">
+                            <div class="panel-header">
+                                <h3>Expense Breakdown</h3>
+                            </div>
+                            <canvas id="expenseDoughnutChart"></canvas>
+                            <div class="breakdown-list">
+                                <div><span class="dot food"></span><strong>Food & Dining</strong> <span>32%</span></div>
+                                <div><span class="dot transport"></span><strong>Transportation</strong> <span>18%</span></div>
+                                <div><span class="dot housing"></span><strong>Housing</strong> <span>15%</span></div>
+                                <div><span class="dot utilities"></span><strong>Utilities</strong> <span>10%</span></div>
+                                <div><span class="dot entertainment"></span><strong>Entertainment</strong> <span>8%</span></div>
+                            </div>
+                        </div>
+
+                        <div class="panel card-glow advisor-panel">
+                            <div class="panel-header">
+                                <h3>AI Financial Advisor</h3>
+                            </div>
+                            <div class="advisor-content">
+                                <div class="advisor-note"><span class="advisor-icon advisor-blue">1</span><p>You spent 18% more on dining out this month.</p></div>
+                                <div class="advisor-note"><span class="advisor-icon advisor-green">2</span><p>You can save ₹3,500 by reducing entertainment expenses.</p></div>
+                                <div class="advisor-note"><span class="advisor-icon advisor-orange">3</span><p>Your predicted month-end savings are ₹18,200.</p></div>
+                                <div class="advisor-note"><span class="advisor-icon advisor-purple">4</span><p>Keep going! You are on track to achieve your goals.</p></div>
+                            </div>
+                            <a href="#" class="insights-btn">View All Insights</a>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-view second-viewport">
+                        <div class="panel card-glow overview-panel">
+                            <div class="panel-header">
+                                <h3>Expense Overview</h3>
+                            </div>
+                            <div class="progress-card">
+                                <div class="progress-label">
+                                    <span>Overall Budget</span>
+                                    <strong>₹59,700 spent</strong>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width:81%"></div>
+                                </div>
+                                <p><strong>81%</strong> Used • <span>Remaining ₹11,200</span></p>
+                            </div>
+                        </div>
+
+                        <div class="panel card-glow transactions-card">
+                            <div class="panel-header">
+                                <h3>Recent Transactions</h3>
+                                <a href="#">View All</a>
+                            </div>
+                            <div class="table-scroll">
+                                <table class="transactions-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                            <th>Category</th>
+                                            <th>Description</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>05 Jul 2025</td>
+                                            <td class="type expense">Expense</td>
+                                            <td>Food & Dining</td>
+                                            <td>Lunch at Restaurant</td>
+                                            <td>- ₹320</td>
+                                        </tr>
+                                        <tr>
+                                            <td>04 Jul 2025</td>
+                                            <td class="type expense">Expense</td>
+                                            <td>Transportation</td>
+                                            <td>Uber Ride</td>
+                                            <td>- ₹650</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03 Jul 2025</td>
+                                            <td class="type income">Income</td>
+                                            <td>Salary</td>
+                                            <td>July Salary</td>
+                                            <td>+ ₹50,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03 Jul 2025</td>
+                                            <td class="type expense">Expense</td>
+                                            <td>Utilities</td>
+                                            <td>Electricity Bill</td>
+                                            <td>- ₹1,250</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel card-glow savings-panel">
+                            <div class="panel-header">
+                                <h3>Savings Goal Progress</h3>
+                            </div>
+                            <div class="goal-card">
+                                <div class="goal-header">
+                                    <span>Laptop Fund</span>
+                                    <strong>₹34,000 / ₹80,000</strong>
+                                </div>
+                                <div class="goal-track"><div class="goal-fill" style="width:42%"></div></div>
+                                <div class="goal-header">
+                                    <span>Europe Trip</span>
+                                    <strong>₹45,000 / ₹1,20,000</strong>
+                                </div>
+                                <div class="goal-track"><div class="goal-fill goal-fill-secondary" style="width:37%"></div></div>
+                                <a href="#" class="view-goals">View All Goals</a>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="module-panel income-panel hidden" data-panel="income-panel">
+                    <div class="module-card card-glow income-panel-card">
+                        <div class="module-header">
+                            <h2>Add Income</h2>
+                            <p>Record income quickly and keep your cash flow updated.</p>
+                        </div>
+                        <form class="entry-form income-entry-form">
+                            <div class="form-grid">
+                                <label>
+                                    <span>Source of Income</span>
+                                    <select>
+                                        <option value="salary">Salary</option>
+                                        <option value="freelance">Freelance</option>
+                                        <option value="business">Business</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Amount (₹)</span>
+                                    <input type="number" min="0" step="0.01" placeholder="Enter amount">
+                                </label>
+                                <label>
+                                    <span>Date</span>
+                                    <input type="date">
+                                </label>
+                                <label>
+                                    <span>Description (Optional)</span>
+                                    <input type="text" placeholder="Enter description">
+                                </label>
+                            </div>
+                            <button type="submit" class="primary-btn">Add Income</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="module-panel expenses-panel hidden" data-panel="expenses-panel">
+                    <div class="module-card card-glow expenses-panel-card">
+                        <div class="module-header">
+                            <h2>Add Expense</h2>
+                            <p>Log expenses and manage where money goes.</p>
+                        </div>
+                        <form class="entry-form expense-entry-form">
+                            <div class="form-grid">
+                                <label>
+                                    <span>Category</span>
+                                    <select>
+                                        <option value="food">Food & Dining</option>
+                                        <option value="transportation">Transportation</option>
+                                        <option value="housing">Housing</option>
+                                        <option value="utilities">Utilities</option>
+                                        <option value="entertainment">Entertainment</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Amount (₹)</span>
+                                    <input type="number" min="0" step="0.01" placeholder="Enter amount">
+                                </label>
+                                <label>
+                                    <span>Date</span>
+                                    <input type="date">
+                                </label>
+                                <label>
+                                    <span>Payment Method</span>
+                                    <select>
+                                        <option value="upi">UPI</option>
+                                        <option value="debit">Debit Card</option>
+                                        <option value="credit">Credit Card</option>
+                                        <option value="cash">Cash</option>
+                                    </select>
+                                </label>
+                                <label class="full-width">
+                                    <span>Description (Optional)</span>
+                                    <input type="text" placeholder="Enter description">
+                                </label>
+                            </div>
+                            <button type="submit" class="primary-btn">Add Expense</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="module-panel budget-panel hidden" data-panel="budget-panel">
+                    <div class="module-card card-glow">
+                        <div class="module-header">
+                            <h2>Monthly Budget</h2>
+                            <p>Set targets and keep spending on track.</p>
+                        </div>
+                        <div class="budget-grid">
+                            <form class="entry-form budget-entry-form">
+                                <label>
+                                    <span>Total Budget</span>
+                                    <input id="totalBudgetInput" type="number" min="0" placeholder="Enter total budget" value="60000">
+                                </label>
+                                <label>
+                                    <span>Spent This Month</span>
+                                    <input id="spentBudgetInput" type="number" min="0" placeholder="Enter spent amount" value="48500">
+                                </label>
+                            </form>
+                            <div class="budget-summary">
+                                <div class="budget-card">
+                                    <span>Remaining</span>
+                                    <h3 id="remainingBudget">₹11,500</h3>
+                                </div>
+                                <div class="budget-card">
+                                    <span>Savings Rate</span>
+                                    <h3 id="savingsRate">35%</h3>
+                                </div>
+                                <div class="budget-progress">
+                                    <div class="budget-progress-header">
+                                        <span>Budget Usage</span>
+                                        <strong id="budgetUsagePercent">81%</strong>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width:81%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-panel savings-panel hidden" data-panel="savings-panel">
+                    <div class="module-card card-glow">
+                        <div class="module-header">
+                            <h2>Savings Goals</h2>
+                            <p>Choose a goal and enter your target and saved amount to track progress.</p>
+                        </div>
+                        <form class="entry-form savings-entry-form">
+                            <label class="full-width">
+                                <span>Select Goal</span>
+                                <select id="savingsGoalSelect">
+                                    <option>Emergency Fund</option>
+                                    <option>Vacation</option>
+                                    <option>Bike</option>
+                                    <option>Laptop</option>
+                                    <option>House</option>
+                                    <option>Education</option>
+                                    <option>Wedding</option>
+                                    <option>Investment</option>
+                                    <option>Retirement</option>
+                                </select>
+                            </label>
+                            <label class="full-width">
+                                <span>Goal Amount</span>
+                                <input id="goalAmountInput" type="number" min="0" placeholder="Enter goal amount">
+                            </label>
+                            <label class="full-width">
+                                <span>Saved Amount</span>
+                                <input id="goalSavedInput" type="number" min="0" placeholder="Enter saved amount">
+                            </label>
+                        </form>
+                        <div class="goal-card savings-goal-card">
+                            <div class="goal-header">
+                                <h3 id="goalTitle">Emergency Fund</h3>
+                                <span id="goalProgressPercent">53%</span>
+                            </div>
+                            <div class="goal-details-grid">
+                                <div>
+                                    <span>Goal Amount</span>
+                                    <strong id="goalAmount">₹50,000</strong>
+                                </div>
+                                <div>
+                                    <span>Saved</span>
+                                    <strong id="goalSaved">₹26,500</strong>
+                                </div>
+                                <div>
+                                    <span>Remaining</span>
+                                    <strong id="goalRemaining">₹23,500</strong>
+                                </div>
+                                <div>
+                                    <span>Progress</span>
+                                    <strong id="goalProgressLabel">53%</strong>
+                                </div>
+                            </div>
+                            <div class="goal-track">
+                                <div class="goal-fill" id="goalProgressFill" style="width:53%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-panel bills-panel hidden" data-panel="bills-panel">
+                    <div class="module-card card-glow bills-card">
+                        <div class="module-header bills-header">
+                            <div>
+                                <h2>Bills & EMI</h2>
+                                <p>Manage all your bills, subscriptions and loan EMIs in one place.</p>
+                            </div>
+                            <button class="secondary-btn"><i class="fa-solid fa-plus"></i> Add Bill / EMI</button>
+                        </div>
+                        <div class="bills-summary-grid">
+                            <article class="bill-summary-card bill-due-today">
+                                <div class="bill-summary-icon due-icon"><i class="fa-solid fa-calendar-day"></i></div>
+                                <div>
+                                    <span>Due Today</span>
+                                    <h3>₹ 2,500</h3>
+                                    <p>2 Bills due today</p>
+                                </div>
+                            </article>
+                            <article class="bill-summary-card bill-upcoming">
+                                <div class="bill-summary-icon upcoming-icon"><i class="fa-solid fa-clock"></i></div>
+                                <div>
+                                    <span>Upcoming</span>
+                                    <h3>₹ 12,800</h3>
+                                    <p>7 Bills due soon</p>
+                                </div>
+                            </article>
+                            <article class="bill-summary-card bill-paid">
+                                <div class="bill-summary-icon paid-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                <div>
+                                    <span>Paid This Month</span>
+                                    <h3>₹ 34,500</h3>
+                                    <p>12 Bills paid</p>
+                                </div>
+                            </article>
+                            <article class="bill-summary-card bill-overdue">
+                                <div class="bill-summary-icon overdue-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div>
+                                    <span>Overdue</span>
+                                    <h3>₹ 1,200</h3>
+                                    <p>1 Bill overdue</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="bills-main-grid">
+                            <div class="bills-table-panel">
+                                <div class="bills-table-header">
+                                    <div class="bills-filter-group">
+                                        <button class="filter-btn active">All</button>
+                                        <button class="filter-btn">Bills</button>
+                                        <button class="filter-btn">EMI</button>
+                                        <button class="filter-btn">Subscriptions</button>
+                                        <button class="filter-btn overdue">Overdue</button>
+                                    </div>
+                                    <div class="bills-search-box">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input type="search" placeholder="Search bills...">
+                                        <button class="filter-action-btn"><i class="fa-solid fa-filter"></i></button>
+                                    </div>
+                                </div>
+                                <div class="table-scroll">
+                                    <table class="bills-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Bill / EMI</th>
+                                                <th>Category</th>
+                                                <th>Due Date</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="bill-name">
+                                                    <div class="bill-icon bill-utilities"><i class="fa-solid fa-bolt"></i></div>
+                                                    <div>
+                                                        <strong>Electricity Bill</strong>
+                                                        <span>BSES Rajdhani</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="category-tag category-utilities">Utilities</span></td>
+                                                <td><strong>10 Aug 2025</strong><small>Due in 1 day</small></td>
+                                                <td>₹ 1,250</td>
+                                                <td><span class="status-pill status-soon">Due Soon</span></td>
+                                                <td><button class="bill-action-btn">Pay Now</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="bill-name">
+                                                    <div class="bill-icon bill-subscription"><i class="fa-solid fa-play"></i></div>
+                                                    <div>
+                                                        <strong>Netflix Subscription</strong>
+                                                        <span>Monthly Plan</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="category-tag category-subscription">Subscription</span></td>
+                                                <td><strong>12 Aug 2025</strong><small>Due in 3 days</small></td>
+                                                <td>₹ 649</td>
+                                                <td><span class="status-pill status-upcoming">Upcoming</span></td>
+                                                <td><button class="bill-action-btn">Pay Now</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="bill-name">
+                                                    <div class="bill-icon bill-emi"><i class="fa-solid fa-building-columns"></i></div>
+                                                    <div>
+                                                        <strong>SBI Personal Loan EMI</strong>
+                                                        <span>XXXX-XXXX-3456</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="category-tag category-emi">EMI</span></td>
+                                                <td><strong>15 Aug 2025</strong><small>Due in 6 days</small></td>
+                                                <td>₹ 8,500</td>
+                                                <td><span class="status-pill status-upcoming">Upcoming</span></td>
+                                                <td><button class="bill-action-btn">Pay Now</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="bill-name">
+                                                    <div class="bill-icon bill-internet"><i class="fa-solid fa-wifi"></i></div>
+                                                    <div>
+                                                        <strong>Internet Bill</strong>
+                                                        <span>Airtel Broadband</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="category-tag category-utilities">Utilities</span></td>
+                                                <td><strong>18 Aug 2025</strong><small>Due in 9 days</small></td>
+                                                <td>₹ 799</td>
+                                                <td><span class="status-pill status-upcoming">Upcoming</span></td>
+                                                <td><button class="bill-action-btn">Pay Now</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="bill-name">
+                                                    <div class="bill-icon bill-mobile"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                                    <div>
+                                                        <strong>Mobile Postpaid</strong>
+                                                        <span>Airtel 9876543210</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="category-tag category-mobile">Mobile</span></td>
+                                                <td><strong>20 Aug 2025</strong><small>Due in 11 days</small></td>
+                                                <td>₹ 499</td>
+                                                <td><span class="status-pill status-upcoming">Upcoming</span></td>
+                                                <td><button class="bill-action-btn">Pay Now</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="bill-name">
+                                                    <div class="bill-icon bill-water"><i class="fa-solid fa-droplet"></i></div>
+                                                    <div>
+                                                        <strong>Water Bill</strong>
+                                                        <span>Municipal Corporation</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="category-tag category-utilities">Utilities</span></td>
+                                                <td><strong>05 Aug 2025</strong><small>Overdue by 5 days</small></td>
+                                                <td>₹ 1,200</td>
+                                                <td><span class="status-pill status-overdue">Overdue</span></td>
+                                                <td><button class="bill-action-btn">Pay Now</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="bills-side-panel">
+                                <div class="overview-card">
+                                    <div class="side-card-header">
+                                        <div>
+                                            <h3>EMI & Loan Overview</h3>
+                                        </div>
+                                        <a href="#">View All</a>
+                                    </div>
+                                    <div class="loan-card">
+                                        <span>Personal Loan</span>
+                                        <strong>EMI: ₹ 8,500 / month</strong>
+                                        <div class="loan-progress">
+                                            <div class="loan-progress-fill" style="width: 45%;"></div>
+                                        </div>
+                                        <div class="loan-meta">
+                                            <span>Remaining: ₹ 2,04,000</span>
+                                            <span>24 EMIs Left</span>
+                                        </div>
+                                    </div>
+                                    <div class="loan-card">
+                                        <span>Car Loan</span>
+                                        <strong>EMI: ₹ 12,000 / month</strong>
+                                        <div class="loan-progress loan-fill-secondary">
+                                            <div class="loan-progress-fill" style="width: 30%;"></div>
+                                        </div>
+                                        <div class="loan-meta">
+                                            <span>Remaining: ₹ 4,80,000</span>
+                                            <span>36 EMIs Left</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-insights-card">
+                                    <h4>AI Payment Insights</h4>
+                                    <p><strong>Your upcoming payments</strong> ₹ 15,400</p>
+                                    <p><strong>Expected income this month</strong> ₹ 45,000</p>
+                                    <p><strong>After payments balance</strong> ₹ 29,600</p>
+                                    <div class="insight-note">
+                                        <p>EMI payments will consume 34% of your expected income this month. Maintain a reserve of at least ₹ 10,000 for financial safety.</p>
+                                    </div>
+                                    <a href="#" class="view-goals">View Detailed Analysis</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="bill-modal-overlay hidden" id="billModal">
+                    <div class="bill-modal-card">
+                        <div class="bill-modal-header">
+                            <div>
+                                <h2>Add New Bill / EMI</h2>
+                                <p>Add and manage your bills, subscriptions or EMI payments.</p>
+                            </div>
+                            <button type="button" class="bill-modal-close" id="billModalClose"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="bill-modal-body">
+                            <div class="payment-type-grid">
+                                <button type="button" class="type-option active" data-type="bill">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    <div>
+                                        <strong>Bill</strong>
+                                        <span>Utilities, Rent, etc.</span>
+                                    </div>
+                                </button>
+                                <button type="button" class="type-option" data-type="emi">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                    <div>
+                                        <strong>EMI</strong>
+                                        <span>Loan EMI payments</span>
+                                    </div>
+                                </button>
+                                <button type="button" class="type-option" data-type="subscription">
+                                    <i class="fa-solid fa-repeat"></i>
+                                    <div>
+                                        <strong>Subscription</strong>
+                                        <span>Netflix, Spotify, etc.</span>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <form class="entry-form bill-entry-form">
+                                <div class="modal-form-grid">
+                                    <label>
+                                        <span>Name / Bill Title</span>
+                                        <input type="text" placeholder="e.g., Electricity Bill">
+                                    </label>
+                                    <label>
+                                        <span>Category</span>
+                                        <select>
+                                            <option>Select category</option>
+                                            <option>Utilities</option>
+                                            <option>EMI</option>
+                                            <option>Subscription</option>
+                                            <option>Mobile</option>
+                                            <option>Internet</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span>Amount (₹)</span>
+                                        <input type="number" placeholder="Enter amount">
+                                    </label>
+                                    <label>
+                                        <span>Due Date</span>
+                                        <input type="date">
+                                    </label>
+                                    <label>
+                                        <span>Frequency</span>
+                                        <select>
+                                            <option>Select frequency</option>
+                                            <option>One-time</option>
+                                            <option>Monthly</option>
+                                            <option>Quarterly</option>
+                                            <option>Annually</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span>Payment Method</span>
+                                        <select>
+                                            <option>Select payment method</option>
+                                            <option>UPI</option>
+                                            <option>Credit Card</option>
+                                            <option>Debit Card</option>
+                                            <option>Net Banking</option>
+                                        </select>
+                                    </label>
+                                    <label class="full-width">
+                                        <span>Reminder</span>
+                                        <select>
+                                            <option>Remind me before</option>
+                                            <option>1 day before</option>
+                                            <option>3 days before</option>
+                                            <option>1 week before</option>
+                                        </select>
+                                    </label>
+                                    <label class="full-width">
+                                        <span>Notes (Optional)</span>
+                                        <input type="text" placeholder="Add any notes (optional)">
+                                    </label>
+                                </div>
+                                <div class="emi-details" id="emiDetails">
+                                    <label>
+                                        <span>Loan / EMI Name</span>
+                                        <input type="text" placeholder="e.g., Home Loan">
+                                    </label>
+                                    <label>
+                                        <span>Total Loan Amount (₹)</span>
+                                        <input type="number" placeholder="Enter total amount">
+                                    </label>
+                                    <label>
+                                        <span>Interest Rate (%)</span>
+                                        <input type="number" step="0.1" placeholder="e.g., 8.5">
+                                    </label>
+                                    <label>
+                                        <span>Tenure (Months)</span>
+                                        <input type="number" placeholder="e.g., 24">
+                                    </label>
+                                </div>
+                                <div class="modal-footer">
+                                    <label class="inline-checkbox">
+                                        <input type="checkbox" checked>
+                                        Set as active
+                                    </label>
+                                    <div style="margin-left:auto; display:flex; gap:12px; flex-wrap:wrap;">
+                                        <button type="button" class="secondary-btn" id="billModalCancel">Cancel</button>
+                                        <button type="submit" class="primary-btn">Save Bill / EMI</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="module-panel reports-panel hidden" data-panel="reports-panel">
+                    <div class="module-card card-glow reports-card">
+                        <div class="module-header">
+                            <h2>Reports & Analytics</h2>
+                            <p>Review your finances with charts and summary metrics.</p>
+                        </div>
+                        <div class="report-grid">
+                            <div class="report-stat">
+                                <span>Total Income</span>
+                                <h3>₹8,25,000</h3>
+                            </div>
+                            <div class="report-stat">
+                                <span>Total Expenses</span>
+                                <h3>₹5,35,600</h3>
+                            </div>
+                            <div class="report-stat">
+                                <span>Total Savings</span>
+                                <h3>₹2,89,400</h3>
+                            </div>
+                            <div class="report-stat">
+                                <span>Savings Rate</span>
+                                <h3>35%</h3>
+                            </div>
+                        </div>
+                        <div class="report-charts">
+                            <div class="chart-card">
+                                <h4>Monthly Expense Trend</h4>
+                                <canvas id="reportLineChart"></canvas>
+                            </div>
+                            <div class="chart-card">
+                                <h4>Expense by Category</h4>
+                                <canvas id="reportDoughnutChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-panel ai-panel hidden" data-panel="ai-panel">
+                    <div class="module-card card-glow ai-card">
+                        <div class="module-header">
+                            <h2>AI Insights</h2>
+                            <p>Personalized insights to improve your financial health.</p>
+                        </div>
+                        <div class="insights-grid">
+                            <div class="insight-summary">
+                                <span>Financial Health Score</span>
+                                <div class="health-score">78<span>/100</span></div>
+                                <p>Good — You are managing your finances well.</p>
+                            </div>
+                            <div class="insight-box">
+                                <h4>Recommendations for You</h4>
+                                <ul>
+                                    <li>Try to keep dining out expenses below ₹16,000 per month.</li>
+                                    <li>Consider investing in a mutual fund SIP for better returns.</li>
+                                    <li>You can save more by setting a monthly budget.</li>
+                                </ul>
+                            </div>
+                            <div class="insight-box">
+                                <h4>Predicted Summary (Next Month)</h4>
+                                <p>Estimated Income <strong>₹75,000</strong></p>
+                                <p>Estimated Expenses <strong>₹56,800</strong></p>
+                                <p>Estimated Savings <strong>₹18,200</strong></p>
+                            </div>
+                            <div class="insight-box top-category">
+                                <h4>Top Spending Category</h4>
+                                <p>Food & Dining</p>
+                                <strong>32%</strong>
+                                <span>₹15,520</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-panel transactions-panel hidden" data-panel="transactions-panel">
+                    <div class="module-card card-glow">
+                        <div class="module-header">
+                            <h2>Transactions</h2>
+                            <p>Review your latest income and expense items.</p>
+                        </div>
+                        <div class="table-scroll">
+                            <table class="transactions-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Category</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>05 Jul 2025</td>
+                                        <td class="type expense">Expense</td>
+                                        <td>Food & Dining</td>
+                                        <td>Lunch at Restaurant</td>
+                                        <td>- ₹320</td>
+                                    </tr>
+                                    <tr>
+                                        <td>04 Jul 2025</td>
+                                        <td class="type expense">Expense</td>
+                                        <td>Transportation</td>
+                                        <td>Uber Ride</td>
+                                        <td>- ₹650</td>
+                                    </tr>
+                                    <tr>
+                                        <td>03 Jul 2025</td>
+                                        <td class="type income">Income</td>
+                                        <td>Salary</td>
+                                        <td>July Salary</td>
+                                        <td>+ ₹50,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>03 Jul 2025</td>
+                                        <td class="type expense">Expense</td>
+                                        <td>Utilities</td>
+                                        <td>Electricity Bill</td>
+                                        <td>- ₹1,250</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-panel settings-panel hidden" data-panel="settings-panel">
+                    <div class="module-card card-glow">
+                        <div class="module-header">
+                            <h2>Settings</h2>
+                            <p>Manage your profile and preferences from one place.</p>
+                        </div>
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <h4>Profile</h4>
+                                <p>Update your personal details and avatar.</p>
+                            </div>
+                            <div class="settings-card">
+                                <h4>Notifications</h4>
+                                <p>Control alerts for budgets, bills, and insights.</p>
+                            </div>
+                            <div class="settings-card">
+                                <h4>Security</h4>
+                                <p>Change password and enable two-factor authentication.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

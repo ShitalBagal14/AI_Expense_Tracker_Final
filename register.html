@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | SmartBudget</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        .form-message {margin-bottom: 16px; padding: 12px 16px; border-radius: 10px; font-weight: 600; display: none;}
+        .form-message.success {background: #def7ec; color: #034d35;}
+        .form-message.error {background: #fde2e1; color: #671010;}
+    </style>
+</head>
+
+<body class="auth-page">
+
+    <header class="marketing-nav">
+        <div class="container-wide">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="AI Expense Tracker logo">
+                    <div>
+                        <h2>AI Expense Tracker</h2>
+                    </div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">AI Insights</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn-login">Login</a>
+                    <a href="register.html" class="btn-register">Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+<div class="container">
+
+    <!-- Left Side -->
+    <div class="left">
+
+        <div class="logo">
+          
+           
+        </div>
+
+        <h1>Create Your Account</h1>
+
+        <p>
+            Join SmartBudget and start managing your
+            expenses, budgets and savings with
+            AI-powered financial insights.
+        </p>
+
+        <img src="images/register-illustration.png" alt="Register">
+
+    </div>
+
+    <!-- Right Side -->
+    <div class="right">
+
+        <div class="register-card">
+
+            <div class="user-icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            
+
+            <form id="registerForm" action="http://127.0.0.1:5000/register" method="POST">
+                <div id="registerMessage" class="form-message"></div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="full_name" placeholder="Full Name" required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                
+
+                <button type="submit" class="register-btn">
+                    Create Account
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                
+
+                <p class="login-link">
+                    Already have an account?
+                    <a href="login.html">Login</a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+
+</html>
+    </div>
+
+</div>
+
+</body>
+
+</html>
