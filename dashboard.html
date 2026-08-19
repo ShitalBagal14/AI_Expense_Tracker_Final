@@ -162,13 +162,10 @@
                             <div class="panel-header">
                                 <h3>AI Financial Advisor</h3>
                             </div>
-                            <div class="advisor-content">
-                                <div class="advisor-note"><span class="advisor-icon advisor-blue">1</span><p>You spent 18% more on dining out this month.</p></div>
-                                <div class="advisor-note"><span class="advisor-icon advisor-green">2</span><p>You can save ₹3,500 by reducing entertainment expenses.</p></div>
-                                <div class="advisor-note"><span class="advisor-icon advisor-orange">3</span><p>Your predicted month-end savings are ₹18,200.</p></div>
-                                <div class="advisor-note"><span class="advisor-icon advisor-purple">4</span><p>Keep going! You are on track to achieve your goals.</p></div>
+                            <div class="advisor-content" id="advisorContent">
+                                <div class="advisor-note advisor-loading"><p>Loading AI insights...</p></div>
                             </div>
-                            <a href="#" class="insights-btn">View All Insights</a>
+                            <a href="#" class="insights-btn" id="viewAllInsightsBtn">View All Insights</a>
                         </div>
                     </section>
 
@@ -634,15 +631,15 @@
                                     </div>
                                 </div>
 
-                                <div class="payment-insights-card">
+                                <div class="payment-insights-card" id="paymentInsightsCard">
                                     <h4>AI Payment Insights</h4>
-                                    <p><strong>Your upcoming payments</strong> ₹ 15,400</p>
-                                    <p><strong>Expected income this month</strong> ₹ 45,000</p>
-                                    <p><strong>After payments balance</strong> ₹ 29,600</p>
+                                    <p><strong>Your upcoming payments</strong> <span id="upcomingPayments">—</span></p>
+                                    <p><strong>Expected income this month</strong> <span id="expectedIncome">—</span></p>
+                                    <p><strong>After payments balance</strong> <span id="afterPaymentsBalance">—</span></p>
                                     <div class="insight-note">
-                                        <p>EMI payments will consume 34% of your expected income this month. Maintain a reserve of at least ₹ 10,000 for financial safety.</p>
+                                        <p id="paymentInsightNote">Analyzing your payment schedule...</p>
                                     </div>
-                                    <a href="#" class="view-goals">View Detailed Analysis</a>
+                                    <a href="#" class="view-goals" id="viewDetailedAnalysisBtn">View Detailed Analysis</a>
                                 </div>
                             </div>
                         </div>
@@ -815,35 +812,38 @@
 
                 <section class="module-panel ai-panel hidden" data-panel="ai-panel">
                     <div class="module-card card-glow ai-card">
-                        <div class="module-header">
-                            <h2>AI Insights</h2>
-                            <p>Personalized insights to improve your financial health.</p>
+                        <div class="module-header ai-module-header">
+                            <div>
+                                <h2>AI Insights</h2>
+                                <p>Personalized insights to improve your financial health.</p>
+                            </div>
+                            <button type="button" class="secondary-btn" id="refreshInsightsBtn">
+                                <i class="fa-solid fa-rotate"></i> Refresh Insights
+                            </button>
                         </div>
-                        <div class="insights-grid">
+                        <div class="insights-grid" id="insightsGrid">
                             <div class="insight-summary">
                                 <span>Financial Health Score</span>
-                                <div class="health-score">78<span>/100</span></div>
-                                <p>Good — You are managing your finances well.</p>
+                                <div class="health-score" id="healthScore">—<span>/100</span></div>
+                                <p id="healthLabel">Analyzing your finances...</p>
                             </div>
                             <div class="insight-box">
                                 <h4>Recommendations for You</h4>
-                                <ul>
-                                    <li>Try to keep dining out expenses below ₹16,000 per month.</li>
-                                    <li>Consider investing in a mutual fund SIP for better returns.</li>
-                                    <li>You can save more by setting a monthly budget.</li>
+                                <ul id="recommendationsList">
+                                    <li>Loading recommendations...</li>
                                 </ul>
                             </div>
                             <div class="insight-box">
                                 <h4>Predicted Summary (Next Month)</h4>
-                                <p>Estimated Income <strong>₹75,000</strong></p>
-                                <p>Estimated Expenses <strong>₹56,800</strong></p>
-                                <p>Estimated Savings <strong>₹18,200</strong></p>
+                                <p>Estimated Income <strong id="predictedIncome">—</strong></p>
+                                <p>Estimated Expenses <strong id="predictedExpenses">—</strong></p>
+                                <p>Estimated Savings <strong id="predictedSavings">—</strong></p>
                             </div>
                             <div class="insight-box top-category">
                                 <h4>Top Spending Category</h4>
-                                <p>Food & Dining</p>
-                                <strong>32%</strong>
-                                <span>₹15,520</span>
+                                <p id="topCategoryName">—</p>
+                                <strong id="topCategoryPercent">—</strong>
+                                <span id="topCategoryAmount">—</span>
                             </div>
                         </div>
                     </div>

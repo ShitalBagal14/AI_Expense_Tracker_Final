@@ -1709,6 +1709,26 @@ a {
     font-size: 2rem;
 }
 
+.ai-module-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.ai-module-header .secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.advisor-loading p,
+.advisor-loading {
+    color: #64748b;
+}
+
 
 
 

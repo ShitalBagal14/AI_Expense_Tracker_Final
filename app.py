@@ -1,12 +1,22 @@
 import os
 from flask import Flask, request, jsonify, send_from_directory
 import mysql.connector
+from insights_engine import generate_insights
 
 app = Flask(__name__, static_folder='.', static_url_path='')
 
+ALLOWED_ORIGINS = {
+    'http://127.0.0.1:5501',
+    'http://localhost:5501',
+    'http://127.0.0.1:5000',
+    'http://localhost:5000',
+}
+
 @app.after_request
 def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = 'http://127.0.0.1:5501'
+    origin = request.headers.get('Origin')
+    if origin in ALLOWED_ORIGINS:
+        response.headers['Access-Control-Allow-Origin'] = origin
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     response.headers['Access-Control-Allow-Methods'] = 'GET,POST,OPTIONS'
     return response
@@ -100,6 +110,42 @@ def login():
         return jsonify({'message': 'Login successful'}), 200
     else:
         return jsonify({'message': 'Invalid email or password'}), 401
+
+DEFAULT_FINANCIAL_DATA = {
+    'income': 75000,
+    'expenses': 48500,
+    'budget_total': 60000,
+    'budget_spent': 48500,
+    'categories': [
+        {'name': 'Food & Dining', 'amount': 15520},
+        {'name': 'Transportation', 'amount': 8730},
+        {'name': 'Housing', 'amount': 7275},
+        {'name': 'Utilities', 'amount': 4850},
+        {'name': 'Entertainment', 'amount': 3880},
+    ],
+    'bills': [
+        {'name': 'Electricity Bill', 'amount': 2500, 'type': 'utility'},
+        {'name': 'Internet Bill', 'amount': 1200, 'type': 'utility'},
+        {'name': 'Home Loan EMI', 'amount': 18500, 'type': 'emi'},
+        {'name': 'Car Loan EMI', 'amount': 12000, 'type': 'emi'},
+    ],
+    'income_history': [52000, 58000, 61000, 64000, 70000, 73000, 75000],
+    'expense_history': [38000, 42000, 45000, 46000, 47000, 48500, 48500],
+}
+
+@app.route('/api/insights', methods=['GET', 'POST', 'OPTIONS'])
+def insights():
+    if request.method == 'OPTIONS':
+        return '', 204
+
+    payload = DEFAULT_FINANCIAL_DATA.copy()
+    if request.method == 'POST' and request.is_json:
+        user_data = request.get_json(silent=True) or {}
+        for key, value in user_data.items():
+            if value is not None:
+                payload[key] = value
+
+    return jsonify(generate_insights(payload))
 
 if __name__ == '__main__':
     app.run(debug=True)
