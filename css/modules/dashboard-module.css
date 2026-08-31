@@ -1,0 +1,352 @@
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.09);
+}
+
+.summary-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.summary-card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.summary-card-icon.income {
+    background: #dbeafe;
+}
+
+.summary-card-icon.expense {
+    background: #fee2e2;
+}
+
+.summary-card-icon.savings {
+    background: #dbeafe;
+}
+
+.summary-card-icon.budget {
+    background: #ede9fe;
+}
+
+.summary-card span {
+    display: block;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.summary-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.summary-card p {
+    margin: 8px 0 0;
+    color: #475569;
+}
+
+.dashboard-view {
+    display: grid;
+    gap: 16px;
+}
+
+.first-viewport {
+    grid-template-columns: 1.5fr 1.2fr 0.95fr;
+    align-items: flex-start;
+}
+
+.second-viewport {
+    grid-template-columns: 1.25fr 1fr 0.95fr;
+    align-items: flex-start;
+}
+
+.panel {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.panel-header span,
+.panel-header a {
+    color: #64748b;
+    font-size: 0.94rem;
+}
+
+.income-chart-panel {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    min-height: 300px;
+}
+
+.expense-chart-panel {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    min-height: 300px;
+}
+
+.advisor-panel {
+    min-height: 420px;
+}
+
+.overview-panel {
+    min-height: 220px;
+}
+
+.savings-panel {
+    min-height: 220px;
+}
+
+.transactions-card {
+    min-height: 260px;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 100%;
+    min-height: 0;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 14px 16px;
+    text-align: left;
+}
+
+.transactions-table th {
+    color: #64748b;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.transactions-table tbody tr {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    transition: transform 0.2s ease;
+}
+
+.transactions-table tbody tr:hover {
+    transform: translateY(-2px);
+}
+
+.transactions-table td {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.transactions-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.type.income {
+    color: #16a34a;
+    font-weight: 700;
+}
+
+.type.expense {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.breakdown-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.breakdown-list div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.food { background: #2563eb; }
+.transport { background: #22c55e; }
+.housing { background: #f59e0b; }
+.utilities { background: #0ea5e9; }
+.entertainment { background: #8b5cf6; }
+
+.panel canvas {
+    width: 100% !important;
+    height: 220px !important;
+    max-height: 240px;
+}
+
+.advisor-panel .advisor-content {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.advisor-note {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.advisor-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.advisor-blue { background: #2563eb; }
+.advisor-green { background: #16a34a; }
+.advisor-orange { background: #f59e0b; }
+.advisor-purple { background: #8b5cf6; }
+
+.advisor-note p {
+    margin: 0;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.insights-btn,
+.view-goals {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    padding: 12px 18px;
+    border-radius: 14px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.view-goals {
+    margin-top: 20px;
+}
+
+.progress-panel {
+    display: none;
+}
+
+.progress-card,
+.goal-card {
+    background: #f8fbff;
+    border-radius: 22px;
+    padding: 18px;
+}
+
+.progress-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.progress-label span {
+    color: #64748b;
+}
+
+.progress-label strong {
+    color: #0f172a;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 16px;
+    background: #dbeafe;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
+    border-radius: 999px;
+    min-width: 6%;
+}
+
+.budget-panel .budget-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.budget-panel .budget-progress-header strong {
+    color: #0f172a;
+    font-size: 0.95rem;
+}
+
+.savings-panel .goal-track {
+    width: 100%;
+    height: 12px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.savings-panel .goal-fill {
+    width: 42%;
+    height: 100%;
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+}
+
+.savings-panel .goal-fill-secondary {
+    width: 37%;
+    background: linear-gradient(135deg, #fb7185, #f43f5e);
+}

@@ -1,0 +1,59 @@
+<section class="module-panel savings-panel hidden" data-panel="savings-panel">
+    <div class="module-card card-glow">
+        <div class="module-header">
+            <h2>Savings Goals</h2>
+            <p>Choose a goal and enter your target and saved amount to track progress.</p>
+        </div>
+        <form class="entry-form savings-entry-form">
+            <label class="full-width">
+                <span>Select Goal</span>
+                <select id="savingsGoalSelect">
+                    <option>Emergency Fund</option>
+                    <option>Vacation</option>
+                    <option>Bike</option>
+                    <option>Laptop</option>
+                    <option>House</option>
+                    <option>Education</option>
+                    <option>Wedding</option>
+                    <option>Investment</option>
+                    <option>Retirement</option>
+                </select>
+            </label>
+            <label class="full-width">
+                <span>Goal Amount</span>
+                <input id="goalAmountInput" type="number" min="0" placeholder="Enter goal amount">
+            </label>
+            <label class="full-width">
+                <span>Saved Amount</span>
+                <input id="goalSavedInput" type="number" min="0" placeholder="Enter saved amount">
+            </label>
+        </form>
+        <div class="goal-card savings-goal-card">
+            <div class="goal-header">
+                <h3 id="goalTitle">Emergency Fund</h3>
+                <span id="goalProgressPercent">53%</span>
+            </div>
+            <div class="goal-details-grid">
+                <div>
+                    <span>Goal Amount</span>
+                    <strong id="goalAmount">₹50,000</strong>
+                </div>
+                <div>
+                    <span>Saved</span>
+                    <strong id="goalSaved">₹26,500</strong>
+                </div>
+                <div>
+                    <span>Remaining</span>
+                    <strong id="goalRemaining">₹23,500</strong>
+                </div>
+                <div>
+                    <span>Progress</span>
+                    <strong id="goalProgressLabel">53%</strong>
+                </div>
+            </div>
+            <div class="goal-track">
+                <div class="goal-fill" id="goalProgressFill" style="width:53%"></div>
+            </div>
+        </div>
+    </div>
+</section>

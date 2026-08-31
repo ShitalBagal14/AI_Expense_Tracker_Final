@@ -1,0 +1,360 @@
+<section id="bills-panel" class="module-panel bills-module">
+
+    <!-- HEADER -->
+    <div class="bills-header">
+
+        <div class="bills-title-area">
+            <h2>💳 Bills & EMI</h2>
+            <p>Manage your bills, subscriptions and loan payments in one place.</p>
+        </div>
+
+        <button class="add-bill-btn" id="openBillModal">
+            <i class="fa-solid fa-plus"></i>
+            Add Bill / EMI
+        </button>
+
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+    <div class="bill-summary-grid">
+
+        <div class="bill-summary-card">
+
+            <div class="summary-icon purple">
+                <i class="fa-solid fa-calendar-day"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Due Today</div>
+                <div class="summary-value" id="dueTodayAmount">₹0</div>
+                <div class="summary-description" id="dueTodayCount">
+                    0 Bills due today
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+
+        <div class="bill-summary-card">
+
+            <div class="summary-icon blue">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Upcoming</div>
+                <div class="summary-value" id="upcomingAmount">₹0</div>
+                <div class="summary-description" id="upcomingCount">
+                    0 Bills due soon
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+
+        <div class="bill-summary-card">
+
+            <div class="summary-icon green">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Paid This Month</div>
+                <div class="summary-value" id="paidAmount">₹0</div>
+                <div class="summary-description" id="paidCount">
+                    0 Bills paid
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+
+        <div class="bill-summary-card">
+
+            <div class="summary-icon red">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Overdue</div>
+                <div class="summary-value" id="overdueAmount">₹0</div>
+                <div class="summary-description" id="overdueCount">
+                    0 Bills overdue
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="bills-content-grid">
+
+        <!-- LEFT -->
+        <div class="bills-list-card">
+
+            <!-- TOOLBAR -->
+            <div class="bills-toolbar">
+
+                <div class="bill-tabs">
+
+                    <button class="bill-tab active" data-filter="all">
+                        All
+                    </button>
+
+                    <button class="bill-tab" data-filter="bill">
+                        Bills
+                    </button>
+
+                    <button class="bill-tab" data-filter="emi">
+                        EMI
+                    </button>
+
+                    <button class="bill-tab" data-filter="subscription">
+                        Subscriptions
+                    </button>
+
+                    <button class="bill-tab" data-filter="overdue">
+                        Overdue
+                    </button>
+
+                </div>
+
+
+                <div class="bill-search-area">
+
+                    <input
+                        type="text"
+                        id="billSearch"
+                        class="bill-search"
+                        placeholder="🔍  Search bills..."
+                    >
+
+                    <button class="bill-filter-btn">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="bills-table-wrapper">
+
+                <table class="bills-table">
+
+                    <thead>
+                        <tr>
+                            <th>Bill / EMI</th>
+                            <th>Category</th>
+                            <th>Due Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="billsTableBody">
+
+                        <!-- JS will insert bills here -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+            <div class="bills-pagination">
+
+                <span class="pagination-info" id="billsPaginationInfo">
+                    Showing 0 bills
+                </span>
+
+                <div class="pagination-buttons">
+
+                    <button class="page-btn">
+                        ‹
+                    </button>
+
+                    <button class="page-btn active">
+                        1
+                    </button>
+
+                    <button class="page-btn">
+                        2
+                    </button>
+
+                    <button class="page-btn">
+                        3
+                    </button>
+
+                    <button class="page-btn">
+                        ›
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT COLUMN -->
+        <div class="bills-right-column">
+
+
+            <!-- EMI OVERVIEW -->
+            <div class="emi-overview-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        🏦 EMI & Loan Overview
+                    </h3>
+
+                    <button class="view-all-btn">
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div id="emiOverview">
+
+                    <div class="emi-item">
+
+                        <div class="emi-name">
+                            No EMI data
+                        </div>
+
+                        <div class="emi-monthly">
+                            ₹0 / month
+                        </div>
+
+                        <div class="emi-progress-row">
+
+                            <div class="emi-progress">
+                                <div
+                                    class="emi-progress-bar"
+                                    style="width:0%">
+                                </div>
+                            </div>
+
+                            <span class="emi-progress-percent">
+                                0%
+                            </span>
+
+                        </div>
+
+                        <div class="emi-bottom">
+                            <span>Remaining: ₹0</span>
+                            <span>0 EMIs left</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI PAYMENT INSIGHTS -->
+            <div class="ai-payment-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        ✨ AI Payment Insights
+                    </h3>
+
+                </div>
+
+
+                <div class="ai-insight">
+
+                    <div class="ai-insight-icon">
+                        📅
+                    </div>
+
+                    <div class="ai-insight-content">
+
+                        <strong>
+                            Upcoming payments
+                        </strong>
+
+                        <p id="upcomingInsight">
+                            Add your bills to see upcoming payments.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-insight">
+
+                    <div class="ai-insight-icon">
+                        📈
+                    </div>
+
+                    <div class="ai-insight-content">
+
+                        <strong>
+                            Monthly payment balance
+                        </strong>
+
+                        <p id="monthlyBalanceInsight">
+                            Add your bills to see your payment balance.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-insight">
+
+                    <div class="ai-insight-icon">
+                        🛡️
+                    </div>
+
+                    <div class="ai-insight-content">
+
+                        <strong>
+                            Stay ahead
+                        </strong>
+
+                        <p>
+                            Pay on time and maintain a reserve
+                            for financial safety.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button class="analysis-btn">
+                    View Detailed Analysis
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

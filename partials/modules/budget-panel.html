@@ -1,0 +1,39 @@
+<section class="module-panel budget-panel hidden" data-panel="budget-panel">
+    <div class="module-card card-glow">
+        <div class="module-header">
+            <h2>Monthly Budget</h2>
+            <p>Set targets and keep spending on track.</p>
+        </div>
+        <div class="budget-grid">
+            <form class="entry-form budget-entry-form">
+                <label>
+                    <span>Total Budget</span>
+                    <input id="totalBudgetInput" type="number" min="0" placeholder="Enter total budget" value="60000">
+                </label>
+                <label>
+                    <span>Spent This Month</span>
+                    <input id="spentBudgetInput" type="number" min="0" placeholder="Enter spent amount" value="48500">
+                </label>
+            </form>
+            <div class="budget-summary">
+                <div class="budget-card">
+                    <span>Remaining</span>
+                    <h3 id="remainingBudget">₹11,500</h3>
+                </div>
+                <div class="budget-card">
+                    <span>Savings Rate</span>
+                    <h3 id="savingsRate">35%</h3>
+                </div>
+                <div class="budget-progress">
+                    <div class="budget-progress-header">
+                        <span>Budget Usage</span>
+                        <strong id="budgetUsagePercent">81%</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:81%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
