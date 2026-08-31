@@ -1,0 +1,329 @@
+<section class="module-panel reports-panel hidden" data-panel="reports-panel">
+
+    <!-- ==========================================
+         REPORT HEADER
+    =========================================== -->
+
+    <div class="module-card reports-card">
+
+        <div class="reports-header">
+
+            <div>
+                <h2>Analytics</h2>
+                <p>Overview of your financial activity</p>
+            </div>
+
+            <div class="reports-actions">
+
+                <select id="reportPeriod">
+                    <option value="3">Last 3 Months</option>
+                    <option value="6" selected>Last 6 Months</option>
+                    <option value="12">Last 12 Months</option>
+                </select>
+
+                <button id="refreshReports" type="button">
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             SUMMARY CARDS
+        =========================================== -->
+
+        <div class="report-grid">
+
+            <!-- TOTAL INCOME -->
+
+            <div class="report-stat income-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>Total Income</span>
+
+                    <h3 id="totalIncome">
+                        ₹0
+                    </h3>
+
+                    <small>
+                        <i class="fa-solid fa-arrow-up"></i>
+                        Income received
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL EXPENSES -->
+
+            <div class="report-stat expense-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>Total Expenses</span>
+
+                    <h3 id="totalExpenses">
+                        ₹0
+                    </h3>
+
+                    <small>
+                        Money spent
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL SAVINGS -->
+
+            <div class="report-stat savings-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-piggy-bank"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>Total Savings</span>
+
+                    <h3 id="totalSavings">
+                        ₹0
+                    </h3>
+
+                    <small>
+                        Income - Expenses
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAVINGS RATE -->
+
+            <div class="report-stat rate-stat">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-chart-column"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>Savings Rate</span>
+
+                    <h3 id="savingRate">
+                        0%
+                    </h3>
+
+                    <small>
+                        of total income
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             FIRST ROW
+        =========================================== -->
+
+        <div class="report-chart-grid">
+
+
+            <!-- INCOME VS EXPENSES -->
+
+            <div class="chart-card large-chart">
+
+                <div class="chart-header">
+
+                    <div>
+                        <h4>Income vs Expenses</h4>
+                        <p>Monthly comparison</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="incomeExpenseChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPENSE CATEGORY -->
+
+            <div class="chart-card">
+
+                <div class="chart-header">
+
+                    <div>
+                        <h4>Expense by Category</h4>
+                        <p>Where your money goes</p>
+                    </div>
+
+                </div>
+
+                <div class="category-chart-wrapper">
+
+                    <div class="category-canvas">
+
+                        <canvas id="expenseCategoryChart"></canvas>
+
+                    </div>
+
+                    <div id="categoryLegend"
+                         class="category-legend">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI INSIGHTS -->
+
+            <div class="chart-card ai-insights-card">
+
+                <div class="chart-header">
+
+                    <div>
+                        <h4>
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            AI Insights
+                        </h4>
+                    </div>
+
+                </div>
+
+                <div id="aiInsights"
+                     class="ai-insights">
+
+                    <div class="insight-item">
+
+                        <span class="insight-icon">
+                            💡
+                        </span>
+
+                        <p>
+                            Analyzing your spending...
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             SECOND ROW
+        =========================================== -->
+
+        <div class="report-chart-grid second-row">
+
+
+            <!-- MONTHLY EXPENSE -->
+
+            <div class="chart-card large-chart">
+
+                <div class="chart-header">
+
+                    <div>
+                        <h4>Monthly Expense Trend</h4>
+                        <p>Track your spending</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="monthlyExpenseChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAVINGS TREND -->
+
+            <div class="chart-card large-chart">
+
+                <div class="chart-header">
+
+                    <div>
+                        <h4>Savings Trend</h4>
+                        <p>Monthly savings growth</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="savingsTrendChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOP CATEGORY -->
+
+            <div class="chart-card top-category-card">
+
+                <div class="chart-header">
+
+                    <div>
+                        <h4>Top Spending Category</h4>
+                    </div>
+
+                </div>
+
+                <div id="topCategory"
+                     class="top-category">
+
+                    <div class="top-category-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <span>No data</span>
+
+                        <h3>₹0</h3>
+
+                        <small>
+                            0% of total expenses
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,99 @@
+.card-glow {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 28px;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+    padding: 26px;
+    overflow: hidden;
+}
+
+.welcome-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    min-height: 140px;
+}
+
+.welcome-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.welcome-card h2 {
+    font-size: 1.6rem;
+    margin: 0 0 12px;
+}
+
+.welcome-card p {
+    max-width: 480px;
+    color: #596b84;
+    line-height: 1.7;
+}
+
+.welcome-metric {
+    background: #f8fbff;
+    border-radius: 24px;
+    padding: 20px 24px;
+    text-align: right;
+}
+
+.welcome-metric p {
+    margin: 0 0 8px;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.welcome-metric h3 {
+    margin: 0;
+    font-size: 2rem;
+}
+.module-panel.hidden {
+    display: none;
+}
+
+.module-panel {
+    display: block;
+}
+.module-header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.module-header p {
+    margin: 8px 0 0;
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.entry-form {
+    display: grid;
+    gap: 20px;
+}
+
+
+@media (max-width: 1150px) {
+    .module-card,
+    .budget-grid,
+    .report-grid,
+    .settings-grid,
+    .insights-grid,
+    .dashboard-view {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid,
+    .budget-grid,
+    .report-grid,
+    .settings-grid,
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+}

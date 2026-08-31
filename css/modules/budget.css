@@ -1,0 +1,88 @@
+.budget-panel .budget-entry-form input,
+    .budget-panel .budget-entry-form select,
+    .savings-panel .savings-entry-form input,
+    .savings-panel .savings-entry-form select {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid #d9e4f3;
+        background: #f8fbff;
+        color: #0e1d33;
+        outline: none;
+    }
+
+    .budget-panel .budget-entry-form input:focus,
+    .budget-panel .budget-entry-form select:focus,
+    .savings-panel .savings-entry-form input:focus,
+    .savings-panel .savings-entry-form select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    }
+.budget-grid,
+.report-grid,
+.settings-grid,
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.budget-panel .budget-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.budget-panel .budget-summary {
+    display: grid;
+    gap: 18px;
+}
+
+.budget-panel .budget-entry-form {
+    display: grid;
+    gap: 20px;
+    background: #f8fbff;
+    padding: 22px;
+    border-radius: 24px;
+}
+
+.budget-panel .budget-entry-form label {
+    display: grid;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 16px 18px;
+}
+
+.budget-panel .budget-entry-form label span {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.budget-panel .budget-card,
+.report-stat,
+.settings-card,
+.insight-summary,
+.insight-box {
+    background: #f8fbff;
+    border-radius: 22px;
+    padding: 20px;
+}
+
+.budget-card span,
+.report-stat span,
+.insight-summary span,
+.settings-card h4 {
+    display: block;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.report-stat h3,
+.budget-card h3,
+.insight-summary .health-score {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #0f172a;
+}
+

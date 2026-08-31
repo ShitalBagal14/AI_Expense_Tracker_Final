@@ -1,0 +1,38 @@
+<section class="module-panel ai-panel hidden" data-panel="ai-panel">
+                    <div class="module-card card-glow ai-card">
+                        <div class="module-header ai-module-header">
+                            <div>
+                                <h2>AI Insights</h2>
+                                <p>Personalized insights to improve your financial health.</p>
+                            </div>
+                            <button type="button" class="secondary-btn" id="refreshInsightsBtn">
+                                <i class="fa-solid fa-rotate"></i> Refresh Insights
+                            </button>
+                        </div>
+                        <div class="insights-grid" id="insightsGrid">
+                            <div class="insight-summary">
+                                <span>Financial Health Score</span>
+                                <div class="health-score" id="healthScore">—<span>/100</span></div>
+                                <p id="healthLabel">Analyzing your finances...</p>
+                            </div>
+                            <div class="insight-box">
+                                <h4>Recommendations for You</h4>
+                                <ul id="recommendationsList">
+                                    <li>Loading recommendations...</li>
+                                </ul>
+                            </div>
+                            <div class="insight-box">
+                                <h4>Predicted Summary (Next Month)</h4>
+                                <p>Estimated Income <strong id="predictedIncome">—</strong></p>
+                                <p>Estimated Expenses <strong id="predictedExpenses">—</strong></p>
+                                <p>Estimated Savings <strong id="predictedSavings">—</strong></p>
+                            </div>
+                            <div class="insight-box top-category">
+                                <h4>Top Spending Category</h4>
+                                <p id="topCategoryName">—</p>
+                                <strong id="topCategoryPercent">—</strong>
+                                <span id="topCategoryAmount">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
