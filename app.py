@@ -37,7 +37,7 @@ try:
 except mysql.connector.Error as e:
     raise RuntimeError(
         f'MySQL connection failed: {e}\n'
-        'Use the correct MySQL username/password or set them in environment variables.'
+        'Please set your MySQL credentials in environment variables or modify the defaults in app.py'
     ) from e
 
 cursor.execute('''

@@ -4,7 +4,7 @@
 
 /* ---------- Main Module ---------- */
 
-.bills-module {
+.bills-panel {
     width: 100%;
     max-width: 100%;
     padding: 28px;
@@ -16,7 +16,7 @@
 
 /* ---------- Header ---------- */
 
-.bills-header {
+.bills-panel .bills-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +24,7 @@
     margin-bottom: 24px;
 }
 
-.bills-title-area h2 {
+.bills-panel .bills-title-area h2 {
     margin: 0;
     font-size: 28px;
     font-weight: 750;
@@ -32,7 +32,7 @@
     letter-spacing: -0.5px;
 }
 
-.bills-title-area p {
+.bills-panel .bills-title-area p {
     margin: 7px 0 0;
     color: #66758f;
     font-size: 14px;
@@ -1253,7 +1253,7 @@
 
 @media (max-width: 850px) {
 
-    .bills-module {
+    .bills-panel {
         padding: 20px;
     }
 
@@ -1292,7 +1292,7 @@
         grid-template-columns: 1fr;
     }
 
-    .bills-module {
+    .bills-panel {
         padding: 14px;
     }
 

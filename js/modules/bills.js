@@ -2,7 +2,10 @@ export const initBills = () => {
 
     const tableBody = document.getElementById('billsTableBody');
 
-    if (!tableBody) return;
+    if (!tableBody) {
+        console.log('Bills table body not found - bills panel may not be loaded yet');
+        return;
+    }
 
     tableBody.innerHTML = `
         <tr>
