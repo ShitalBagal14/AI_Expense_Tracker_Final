@@ -1,5 +1,18 @@
 <section class="module-panel reports-panel hidden" data-panel="reports-panel">
 
+    <!-- Debugging -->
+    <script>
+        console.log("Reports panel HTML loaded");
+        setTimeout(() => {
+            console.log("Checking canvas elements in reports panel...");
+            const canvases = ['incomeExpenseChart', 'expenseCategoryChart', 'monthlyExpenseChart', 'savingsTrendChart'];
+            canvases.forEach(id => {
+                const canvas = document.getElementById(id);
+                console.log(`Canvas ${id}:`, canvas ? 'found' : 'not found');
+            });
+        }, 100);
+    </script>
+
     <!-- ==========================================
          REPORT HEADER
     =========================================== -->
@@ -162,7 +175,7 @@
 
                 <div class="chart-container">
 
-                    <canvas id="incomeExpenseChart"></canvas>
+                    <canvas id="reportsIncomeExpenseChart"></canvas>
 
                 </div>
 

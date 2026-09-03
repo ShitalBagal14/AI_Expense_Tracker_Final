@@ -1,275 +1,121 @@
-<div id="billModal" class="bill-modal-overlay hidden">
+<!-- =========================================================
+     ADD BILL / EMI MODAL
+========================================================= -->
 
-    <div class="bill-modal">
-
-        <!-- Header -->
-        <div class="bill-modal-header">
-            <div>
-                <h2>Add Bill / EMI</h2>
-                <p>Add and manage your regular payments</p>
-            </div>
-
-            <button type="button" class="bill-close-btn" id="closeBillModal">
-                &times;
+<div id="billModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add Bill / EMI</h3>
+            <button class="modal-close" id="closeBillModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
             </button>
         </div>
 
-        <!-- Payment Type -->
-        <div class="payment-type">
-            <button type="button" class="payment-type-btn active" data-type="bill">
-                <span class="type-icon">🧾</span>
-                <div>
-                    <strong>Bill</strong>
-                    <small>Utilities, rent, etc.</small>
-                </div>
-            </button>
-
-            <button type="button" class="payment-type-btn" data-type="emi">
-                <span class="type-icon">🏦</span>
-                <div>
-                    <strong>EMI</strong>
-                    <small>Loan payments</small>
-                </div>
-            </button>
-
-            <button type="button" class="payment-type-btn" data-type="subscription">
-                <span class="type-icon">🔄</span>
-                <div>
-                    <strong>Subscription</strong>
-                    <small>Netflix, Spotify, etc.</small>
-                </div>
-            </button>
-        </div>
-
-        <!-- Form -->
-        <form id="billForm">
-
-            <input type="hidden" id="paymentType" value="bill">
-
+        <form class="bill-form" id="billForm">
             <div class="form-grid">
-
-                <!-- Name -->
+                <!-- Type -->
                 <div class="form-group">
-                    <label for="billName">
-                        Bill / EMI Name <span>*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="billName"
-                        name="name"
-                        placeholder="e.g. Electricity Bill"
-                        required
-                    >
+                    <label for="billType">Type</label>
+                    <select id="billType" name="billType" required>
+                        <option value="">Select Type</option>
+                        <option value="bill">Bill</option>
+                        <option value="emi">EMI</option>
+                        <option value="subscription">Subscription</option>
+                    </select>
                 </div>
 
-                <!-- Category -->
+                <!-- Name/Title -->
                 <div class="form-group">
-                    <label for="billCategory">
-                        Category <span>*</span>
-                    </label>
+                    <label for="billName">Name / Title</label>
+                    <input type="text" id="billName" name="billName" placeholder="e.g., Home Loan EMI" required>
+                </div>
 
-                    <select id="billCategory" name="category" required>
-                        <option value="">Select category</option>
-                        <option value="Utilities">Utilities</option>
-                        <option value="Rent">Rent</option>
-                        <option value="Internet">Internet</option>
-                        <option value="Mobile">Mobile</option>
-                        <option value="Education">Education</option>
-                        <option value="Insurance">Insurance</option>
-                        <option value="Loan">Loan</option>
-                        <option value="Shopping">Shopping</option>
-                        <option value="Other">Other</option>
-                    </select>
+                <!-- Lender/Biller -->
+                <div class="form-group">
+                    <label for="billLender">Lender / Biller</label>
+                    <input type="text" id="billLender" name="billLender" placeholder="e.g., HDFC Bank" required>
                 </div>
 
                 <!-- Amount -->
                 <div class="form-group">
-                    <label for="billAmount">
-                        Amount (₹) <span>*</span>
-                    </label>
-
-                    <input
-                        type="number"
-                        id="billAmount"
-                        name="amount"
-                        placeholder="Enter amount"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
+                    <label for="billAmount">Amount (₹)</label>
+                    <input type="number" id="billAmount" name="billAmount" placeholder="Enter amount" required min="0">
                 </div>
 
-                <!-- Due Date -->
+                <!-- Start Date -->
                 <div class="form-group">
-                    <label for="dueDate">
-                        Due Date <span>*</span>
-                    </label>
-
-                    <input
-                        type="date"
-                        id="dueDate"
-                        name="due_date"
-                        required
-                    >
+                    <label for="billStartDate">Start Date</label>
+                    <input type="date" id="billStartDate" name="billStartDate" required>
                 </div>
 
-                <!-- Frequency -->
+                <!-- Due Date (Monthly) -->
                 <div class="form-group">
-                    <label for="frequency">
-                        Frequency <span>*</span>
-                    </label>
+                    <label for="billDueDate">Due Date (Monthly)</label>
+                    <input type="number" id="billDueDate" name="billDueDate" placeholder="e.g., 05 (day of month)" min="1" max="31">
+                </div>
 
-                    <select id="frequency" name="frequency" required>
-                        <option value="">Select frequency</option>
-                        <option value="Once">Once</option>
-                        <option value="Monthly">Monthly</option>
-                        <option value="Quarterly">Quarterly</option>
-                        <option value="Yearly">Yearly</option>
+                <!-- Tenure (for EMI) -->
+                <div class="form-group emi-field">
+                    <label for="billTenure">Tenure (Months)</label>
+                    <input type="number" id="billTenure" name="billTenure" placeholder="e.g., 240" min="1">
+                </div>
+
+                <!-- Interest Rate (for EMI) -->
+                <div class="form-group emi-field">
+                    <label for="billInterestRate">Interest Rate (% p.a.)</label>
+                    <input type="number" id="billInterestRate" name="billInterestRate" placeholder="e.g., 8.50" step="0.01" min="0">
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label for="billCategory">Category</label>
+                    <select id="billCategory" name="billCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="housing">Housing</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="subscriptions">Subscriptions</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
 
-                <!-- Payment Method -->
+                <!-- Payment Mode -->
                 <div class="form-group">
-                    <label for="paymentMethod">
-                        Payment Method
-                    </label>
-
-                    <select id="paymentMethod" name="payment_method">
-                        <option value="">Select payment method</option>
-                        <option value="UPI">UPI</option>
-                        <option value="Debit Card">Debit Card</option>
-                        <option value="Credit Card">Credit Card</option>
-                        <option value="Bank Transfer">Bank Transfer</option>
-                        <option value="Cash">Cash</option>
-                        <option value="Auto Debit">Auto Debit</option>
+                    <label for="billPaymentMode">Payment Mode</label>
+                    <select id="billPaymentMode" name="billPaymentMode" required>
+                        <option value="">Select Payment Mode</option>
+                        <option value="auto_debit">Auto Debit</option>
+                        <option value="manual">Manual Payment</option>
+                        <option value="upi">UPI</option>
+                        <option value="card">Credit Card</option>
+                        <option value="net_banking">Net Banking</option>
+                        <option value="cash">Cash</option>
                     </select>
                 </div>
 
-            </div>
-
-            <!-- EMI Extra Fields -->
-            <div id="emiFields" class="emi-fields hidden">
-
-                <div class="emi-section-title">
-                    <h3>EMI Details</h3>
-                    <p>Enter loan information</p>
+                <!-- Notes (Optional) -->
+                <div class="form-group full-width">
+                    <label for="billNotes">Notes (Optional)</label>
+                    <textarea id="billNotes" name="billNotes" placeholder="Add any notes..." rows="3"></textarea>
                 </div>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-                        <label for="loanName">
-                            Loan Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="loanName"
-                            placeholder="e.g. SBI Personal Loan"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="loanAmount">
-                            Total Loan Amount (₹)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="loanAmount"
-                            placeholder="e.g. 250000"
-                            min="0"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="interestRate">
-                            Interest Rate (%)
-                        </label>
-
-                        <input
-                            type="number"
-                            id="interestRate"
-                            placeholder="e.g. 8.5"
-                            min="0"
-                            step="0.01"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="totalEmi">
-                            Total EMIs
-                        </label>
-
-                        <input
-                            type="number"
-                            id="totalEmi"
-                            placeholder="e.g. 36"
-                            min="1"
-                        >
-                    </div>
-
-                </div>
-
             </div>
 
-            <!-- Notes -->
-            <div class="form-group full-width">
-                <label for="billNotes">
-                    Notes
-                </label>
-
-                <textarea
-                    id="billNotes"
-                    name="notes"
-                    rows="3"
-                    placeholder="Add any additional notes..."
-                ></textarea>
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancelBillBtn">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="saveBillBtn">Save Bill / EMI</button>
             </div>
-
-            <!-- Active -->
-            <div class="active-option">
-
-                <label class="switch">
-                    <input
-                        type="checkbox"
-                        id="billActive"
-                        checked
-                    >
-                    <span class="slider"></span>
-                </label>
-
-                <div>
-                    <strong>Set as active</strong>
-                    <small>Track this payment on your dashboard</small>
-                </div>
-
-            </div>
-
-            <!-- Footer -->
-            <div class="bill-modal-footer">
-
-                <button
-                    type="button"
-                    class="btn-cancel"
-                    id="cancelBillModal"
-                >
-                    Cancel
-                </button>
-
-                <button
-                    type="submit"
-                    class="btn-save"
-                >
-                    <i class="fa-solid fa-plus"></i>
-                    Save Bill / EMI
-                </button>
-
-            </div>
-
         </form>
-
     </div>
-
 </div>
+
+<!-- Modal Overlay -->
+<div id="billModalOverlay" class="modal-overlay"></div>

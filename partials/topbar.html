@@ -1,22 +1,11 @@
     <div class="topbar-left">
         <div>
-            <h1>Dashboard</h1>
-            <p>Welcome back, Shital 👋</p>
+            <h1 id="pageTitle">Dashboard</h1>
+            <p id="welcomeMessage" class="welcome-message">Welcome back, Shital 👋</p>
         </div>
     </div>
 
     <div class="topbar-right">
-        <div class="month-select-box">
-            <select id="monthSelector">
-                <option>July 2025</option>
-                <option>June 2025</option>
-                <option>May 2025</option>
-            </select>
-        </div>
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input id="transactionSearch" type="search" placeholder="Search transactions">
-        </div>
         <div class="notifications">
             <button id="notificationToggle" class="icon-button">
                 <i class="fa-solid fa-bell"></i>
@@ -36,8 +25,7 @@
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
             <div class="profile-dropdown">
-                <a href="#">My Profile</a>
-                <a href="#">Settings</a>
+                <a href="#" data-panel="settings-panel">Settings</a>
                 <a href="#" id="logoutBtn">Logout</a>
             </div>
         </div>

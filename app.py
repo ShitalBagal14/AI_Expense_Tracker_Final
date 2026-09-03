@@ -23,7 +23,7 @@ def add_cors_headers(response):
 
 MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
 MYSQL_USER = os.getenv('MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'Shital@123')
 MYSQL_DB = os.getenv('MYSQL_DB', 'ai_expense_tracker')
 
 try:
@@ -119,13 +119,46 @@ def login():
     if not email or not password:
         return jsonify({'message': 'Email and password are required'}), 400
 
-    cursor.execute('SELECT password FROM users WHERE email = %s', (email,))
+    cursor.execute('SELECT password, full_name FROM users WHERE email = %s', (email,))
     result = cursor.fetchone()
 
     if result and result[0] == password:
-        return jsonify({'message': 'Login successful'}), 200
+        return jsonify({
+            'message': 'Login successful',
+            'user': {
+                'fullName': result[1],
+                'email': email
+            }
+        }), 200
     else:
         return jsonify({'message': 'Invalid email or password'}), 401
+
+# ============================================================
+# USER PROFILE API
+# ============================================================
+
+@app.route('/api/user/profile', methods=['GET', 'OPTIONS'])
+def get_user_profile():
+    if request.method == 'OPTIONS':
+        return '', 204
+
+    # For demo purposes, return sample profile data
+    # In production, this would fetch from the database based on authenticated user
+    return jsonify({
+        'success': True,
+        'user': {
+            'fullName': 'Shital Bagal',
+            'email': 'shitalbagal50@gmail.com',
+            'mobile': '9876543210',
+            'dob': '1995-05-15',
+            'gender': 'female',
+            'occupation': 'Software Engineer',
+            'address': '123 Main Street',
+            'city': 'Mumbai',
+            'state': 'Maharashtra',
+            'pincode': '400001'
+        }
+    })
 
 DEFAULT_FINANCIAL_DATA = {
     'income': 75000,

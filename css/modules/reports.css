@@ -160,6 +160,12 @@
     min-height: 350px;
 }
 
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
 .category-canvas {
     position: relative;
     height: 250px;
@@ -170,6 +176,7 @@
 .category-canvas canvas {
     max-height: 250px;
     width: 100% !important;
+    display: block !important;
 }
 
 

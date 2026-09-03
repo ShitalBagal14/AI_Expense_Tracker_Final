@@ -71,6 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 if (response.ok) {
                     sessionStorage.setItem('smartbudgetLoggedIn', 'true');
+                    // Store user name if available in response
+                    if (data.user && data.user.fullName) {
+                        sessionStorage.setItem('userName', data.user.fullName);
+                    }
                     showMessage(messageElement, 'Login successful! Redirecting to dashboard...', true);
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';

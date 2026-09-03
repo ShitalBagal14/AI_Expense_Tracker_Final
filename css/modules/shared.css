@@ -56,7 +56,7 @@
     font-size: 2rem;
 }
 .module-panel.hidden {
-    display: none;
+    display: none !important;
 }
 
 .module-panel {
@@ -76,6 +76,10 @@
 .entry-form {
     display: grid;
     gap: 20px;
+}
+
+.welcome-message {
+    display: none; /* Hidden by default, shown only on dashboard via JavaScript */
 }
 
 

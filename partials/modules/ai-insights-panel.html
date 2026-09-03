@@ -1,0 +1,294 @@
+<!-- =========================================================
+     AI INSIGHTS PANEL
+========================================================= -->
+
+<section class="module-panel ai-insights-panel hidden" data-panel="ai-insights-panel">
+
+    <!-- Header -->
+    <div class="ai-header">
+        <div class="ai-header-content">
+            <div class="ai-title">
+                <div class="ai-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L8 8H2V16L8 22V30L16 24L24 30V22L30 16V8H24L16 2Z" fill="url(#aiGradient)"/>
+                        <path d="M16 6L22 10H26V14L22 18V22L16 18L10 22V18L6 14V10H10L16 6Z" fill="white" fill-opacity="0.3"/>
+                        <defs>
+                            <linearGradient id="aiGradient" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#8B5CF6"/>
+                                <stop offset="1" stop-color="#6366F1"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div>
+                    <h2>AI Insights</h2>
+                    <p>Smart financial analysis powered by AI</p>
+                </div>
+            </div>
+            <div class="ai-actions">
+                <div class="date-range">
+                    <span class="date-icon">📅</span>
+                    <span>01 May 2025 - 31 May 2025</span>
+                </div>
+                <button class="refresh-btn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13.5 8A5.5 5.5 0 0 0 8 2.5"/>
+                        <path d="M2.5 8A5.5 5.5 0 0 0 8 13.5"/>
+                        <path d="M13.5 8A5.5 5.5 0 0 1 8 13.5"/>
+                        <path d="M2.5 8A5.5 5.5 0 0 1 8 2.5"/>
+                    </svg>
+                    Refresh Insights
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="ai-summary-cards">
+        <div class="ai-summary-card health-card">
+            <div class="card-icon health-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <span class="card-label">Financial Health</span>
+                <div class="card-value">Good</div>
+                <div class="health-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%"></div>
+                    </div>
+                    <span class="progress-text">78/100</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-summary-card savings-card">
+            <div class="card-icon savings-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <span class="card-label">Monthly Savings Potential</span>
+                <div class="card-value">₹4,650</div>
+                <span class="card-trend positive">↑ 12% vs last month</span>
+            </div>
+        </div>
+
+        <div class="ai-summary-card budget-card">
+            <div class="card-icon budget-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="3" y1="9" x2="21" y2="9"/>
+                    <line x1="9" y1="21" x2="9" y2="9"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <span class="card-label">Budget Adherence</span>
+                <div class="card-value">82%</div>
+                <span class="card-trend positive">↑ 5% vs last month</span>
+            </div>
+        </div>
+
+        <div class="ai-summary-card emi-card">
+            <div class="card-icon emi-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <span class="card-label">EMI to Income Ratio</span>
+                <div class="card-value">28%</div>
+                <span class="card-trend neutral">→ Stable</span>
+            </div>
+        </div>
+
+        <div class="ai-summary-card goal-card">
+            <div class="card-icon goal-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+            </div>
+            <div class="card-content">
+                <span class="card-label">Goal Progress</span>
+                <div class="card-value">64%</div>
+                <span class="card-trend positive">↑ 8% vs last month</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Insights Overview -->
+    <div class="ai-overview-section">
+        <h3 class="section-title">AI Insights Overview</h3>
+        <div class="ai-overview-cards">
+            <div class="ai-overview-card save-card">
+                <div class="overview-icon">
+                    <span class="icon-emoji">💰</span>
+                </div>
+                <div class="overview-content">
+                    <h4>Save More</h4>
+                    <p>Save ₹2,100/month by reducing subscriptions and impulse spending</p>
+                    <button class="overview-btn">View Suggestions</button>
+                </div>
+            </div>
+
+            <div class="ai-overview-card optimize-card">
+                <div class="overview-icon">
+                    <span class="icon-emoji">📊</span>
+                </div>
+                <div class="overview-content">
+                    <h4>Optimize Spending</h4>
+                    <p>Food & Dining and Shopping are your top expense categories</p>
+                    <button class="overview-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="ai-overview-card payment-card">
+                <div class="overview-icon">
+                    <span class="icon-emoji">📅</span>
+                </div>
+                <div class="overview-content">
+                    <h4>Upcoming Payments</h4>
+                    <p>2 bills and 1 EMI due in 7 days (Total: ₹3,240)</p>
+                    <button class="overview-btn">View Upcoming</button>
+                </div>
+            </div>
+
+            <div class="ai-overview-card progress-card">
+                <div class="overview-icon">
+                    <span class="icon-emoji">🎯</span>
+                </div>
+                <div class="overview-content">
+                    <h4>Goal Progress</h4>
+                    <p>Continue progress to reach ₹1,00,000 by Dec 2025</p>
+                    <button class="overview-btn">View Goal Progress</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Recommendations -->
+    <div class="ai-recommendations-section">
+        <h3 class="section-title">AI Recommendations for You</h3>
+        <div class="ai-recommendations-list">
+            <div class="recommendation-item">
+                <div class="rec-icon dining-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2C5.58 2 2 5.58 2 10C2 14.42 5.58 18 10 18C14.42 18 18 14.42 18 10C18 5.58 14.42 2 10 2ZM10 16C6.69 16 4 13.31 4 10C4 6.69 6.69 4 10 4C13.31 4 16 6.69 16 10C16 13.31 13.31 16 10 16Z" fill="#EC4899"/>
+                        <path d="M10 6C8.34 6 7 7.34 7 9C7 10.66 8.34 12 10 12C11.66 12 13 10.66 13 9C13 7.34 11.66 6 10 6Z" fill="#EC4899"/>
+                    </svg>
+                </div>
+                <div class="rec-content">
+                    <h4>Reduce Dining Out</h4>
+                    <p>Cook at home more to save ₹2,000/month</p>
+                </div>
+                <div class="rec-action">
+                    <span class="potential-savings">Save ₹2,000/mo</span>
+                </div>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="rec-icon subscription-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L2 7V13L10 18L18 13V7L10 2Z" fill="#8B5CF6"/>
+                        <path d="M10 6L14 8.5V12.5L10 15L6 12.5V8.5L10 6Z" fill="white" fill-opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="rec-content">
+                    <h4>Cancel Unused Subscriptions</h4>
+                    <p>Cancel unused subscriptions to save ₹850/month</p>
+                </div>
+                <div class="rec-action">
+                    <span class="potential-savings">Save ₹850/mo</span>
+                </div>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="rec-icon emergency-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2C5.58 2 2 5.58 2 10C2 14.42 5.58 18 10 18C14.42 18 18 14.42 18 10C18 5.58 14.42 2 10 2ZM10 16C6.69 16 4 13.31 4 10C4 6.69 6.69 4 10 4C13.31 4 16 6.69 16 10C16 13.31 13.31 16 10 16Z" fill="#10B981"/>
+                        <path d="M10 6V10L13 12" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="rec-content">
+                    <h4>Increase Emergency Fund</h4>
+                    <p>Aim for 6 months of expenses</p>
+                </div>
+                <div class="rec-action">
+                    <span class="action-text">Recommended: Increase savings</span>
+                </div>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="rec-icon loan-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L3 7V13L10 18L17 13V7L10 2Z" fill="#F59E0B"/>
+                        <path d="M10 6L13 8.5V12.5L10 15L7 12.5V8.5L10 6Z" fill="white" fill-opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="rec-content">
+                    <h4>Prepay High Interest Loan</h4>
+                    <p>Prepay ₹20,000 to save ₹2,340 in interest</p>
+                </div>
+                <div class="rec-action">
+                    <span class="potential-savings">Save ₹2,340 interest</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- At a Glance -->
+    <div class="ai-glance-section">
+        <h3 class="section-title">At a Glance</h3>
+        <div class="ai-glance-grid">
+            <div class="glance-item">
+                <span class="glance-label">Total Income</span>
+                <div class="glance-value">₹1,25,000</div>
+                <span class="glance-trend positive">+12% vs last month</span>
+            </div>
+
+            <div class="glance-item">
+                <span class="glance-label">Total Expenses</span>
+                <div class="glance-value">₹58,650</div>
+                <span class="glance-trend positive">-8% vs last month</span>
+            </div>
+
+            <div class="glance-item">
+                <span class="glance-label">Total Savings</span>
+                <div class="glance-value">₹22,500</div>
+                <span class="glance-trend positive">+15% vs last month</span>
+            </div>
+
+            <div class="glance-item">
+                <span class="glance-label">Total EMI</span>
+                <div class="glance-value">₹8,450</div>
+                <span class="glance-trend neutral">No change</span>
+            </div>
+
+            <div class="glance-item">
+                <span class="glance-label">Bills This Month</span>
+                <div class="glance-value">₹2,330</div>
+                <span class="glance-status">2 paid, 1 pending</span>
+            </div>
+
+            <div class="glance-item">
+                <span class="glance-label">Savings Goals</span>
+                <div class="glance-value">₹64,000</div>
+                <span class="glance-status">64% of ₹1,00,000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="ai-disclaimer">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="8" cy="8" r="7"/>
+            <path d="M8 11V8"/>
+            <path d="M8 5H8.01"/>
+        </svg>
+        <p>These insights are AI-generated based on your financial data. Results may vary. Always review and make informed financial decisions.</p>
+    </div>
+
+</section>

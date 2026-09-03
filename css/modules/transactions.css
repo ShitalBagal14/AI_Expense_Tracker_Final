@@ -1,10 +1,10 @@
 /* =========================================================
-   SMARTBUDGET - BILLS & EMI MODULE
+   SMARTBUDGET - TRANSACTIONS MODULE
 ========================================================= */
 
 /* ---------- Main Module ---------- */
 
-.bills-panel {
+.transactions-panel {
     width: 100%;
     max-width: 100%;
     padding: 24px;
@@ -12,13 +12,12 @@
     background: #f6f8fc;
     color: #172033;
     font-family: inherit;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
+    min-height: 100vh;
 }
 
 /* ---------- Header ---------- */
 
-.bills-panel .bills-header {
+.transactions-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,7 +25,7 @@
     margin-bottom: 24px;
 }
 
-.bills-panel .bills-title-area h2 {
+.transactions-title-area h2 {
     margin: 0;
     font-size: 28px;
     font-weight: 750;
@@ -34,21 +33,21 @@
     letter-spacing: -0.5px;
 }
 
-.bills-panel .bills-title-area p {
+.transactions-title-area p {
     margin: 7px 0 0;
     color: #66758f;
     font-size: 14px;
 }
 
-/* Add Bill Button */
+/* Add Transaction Button */
 
-.add-bill-btn {
+.add-transaction-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
 
-    min-width: 160px;
+    min-width: 180px;
     height: 46px;
 
     background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
@@ -62,21 +61,21 @@
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-.add-bill-btn:hover {
+.add-transaction-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
 }
 
 /* ---------- Summary Cards ---------- */
 
-.bill-summary-grid {
+.transaction-summary-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 16px;
     margin-bottom: 24px;
 }
 
-.bill-summary-card {
+.transaction-summary-card {
     background: white;
     border-radius: 16px;
     padding: 20px;
@@ -88,7 +87,7 @@
     cursor: pointer;
 }
 
-.bill-summary-card:hover {
+.transaction-summary-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -103,8 +102,13 @@
     font-size: 20px;
 }
 
-.summary-icon.purple {
-    background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+.summary-icon.green {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    color: white;
+}
+
+.summary-icon.red {
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
     color: white;
 }
 
@@ -113,13 +117,8 @@
     color: white;
 }
 
-.summary-icon.green {
-    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-    color: white;
-}
-
-.summary-icon.red {
-    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+.summary-icon.purple {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
     color: white;
 }
 
@@ -147,32 +146,26 @@
     color: #66758f;
 }
 
-.summary-arrow {
-    font-size: 24px;
-    color: #8996aa;
-    font-weight: 600;
-}
-
 /* ---------- Content Grid ---------- */
 
-.bills-content-grid {
+.transactions-content-grid {
     display: grid;
     grid-template-columns: 1fr 350px;
     gap: 24px;
-    height: calc(100% - 250px);
+    min-height: 400px;
 }
 
-.bills-list-card {
+.transactions-list-card {
     display: flex;
     flex-direction: column;
     background: white;
     border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    overflow: hidden;
+    min-height: 500px;
 }
 
-.bills-right-column {
+.transactions-right-column {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -180,7 +173,7 @@
 
 /* ---------- Toolbar ---------- */
 
-.bills-toolbar {
+.transactions-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -189,13 +182,13 @@
     flex-wrap: wrap;
 }
 
-.bill-tabs {
+.transaction-tabs {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
 }
 
-.bill-tab {
+.transaction-tab {
     padding: 8px 16px;
     border: 1px solid #e0e5ef;
     border-radius: 8px;
@@ -207,24 +200,24 @@
     transition: all 0.3s ease;
 }
 
-.bill-tab.active {
+.transaction-tab.active {
     background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
     color: white;
     border-color: transparent;
 }
 
-.bill-tab:hover:not(.active) {
+.transaction-tab:hover:not(.active) {
     background: #f1f5f9;
     border-color: #8B5CF6;
 }
 
-.bill-search-area {
+.transaction-search-area {
     display: flex;
     gap: 8px;
     align-items: center;
 }
 
-.bill-search {
+.transaction-search {
     padding: 10px 16px;
     border: 1px solid #e0e5ef;
     border-radius: 8px;
@@ -233,7 +226,7 @@
     background: white;
 }
 
-.bill-filter-btn {
+.transaction-filter-btn {
     width: 36px;
     height: 36px;
     border: 1px solid #e0e5ef;
@@ -244,33 +237,34 @@
     transition: all 0.3s ease;
 }
 
-.bill-filter-btn:hover {
+.transaction-filter-btn:hover {
     background: #f1f5f9;
     border-color: #8B5CF6;
 }
 
 /* ---------- Table ---------- */
 
-.bills-table-wrapper {
+.transactions-table-wrapper {
     flex: 1;
     overflow-y: auto;
     border: 1px solid #e0e5ef;
     border-radius: 12px;
+    min-height: 300px;
 }
 
-.bills-table {
+.transactions-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.bills-table thead {
+.transactions-table thead {
     background: #f8fafc;
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
-.bills-table th {
+.transactions-table th {
     padding: 12px 16px;
     text-align: left;
     font-size: 12px;
@@ -281,90 +275,64 @@
     border-bottom: 1px solid #e0e5ef;
 }
 
-.bills-table td {
+.transactions-table td {
     padding: 16px;
     border-bottom: 1px solid #e0e5ef;
     vertical-align: middle;
 }
 
-.bills-table tbody tr:hover {
+.transactions-table tbody tr:hover {
     background: #f8fafc;
 }
 
-.bill-name-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.bill-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: #f1f5f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-}
-
-.bill-name {
+.transaction-date {
     font-weight: 600;
     color: #172033;
     font-size: 14px;
 }
 
-.bill-subtitle {
-    font-size: 12px;
-    color: #66758f;
-}
-
-.bill-category {
+.transaction-type {
     padding: 4px 12px;
     border-radius: 6px;
     font-size: 12px;
     font-weight: 600;
 }
 
-.bill-category {
-    background: #e0e5ef;
-    color: #526078;
-}
-
-.bill-amount {
-    font-weight: 600;
-    color: #172033;
-    font-size: 14px;
-}
-
-.bill-status {
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.status-due {
-    background: #fef3c7;
-    color: #d97706;
-}
-
-.status-upcoming {
-    background: #dbeafe;
-    color: #059669;
-}
-
-.status-paid {
+.transaction-type.income {
     background: #d1fae5;
     color: #059669;
 }
 
-.status-overdue {
+.transaction-type.expense {
     background: #fee2e2;
     color: #dc2626;
 }
 
-.pay-bill-btn {
+.transaction-category {
+    font-size: 14px;
+    color: #526078;
+}
+
+.transaction-description {
+    font-weight: 600;
+    color: #172033;
+    font-size: 14px;
+}
+
+.transaction-amount {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.transaction-amount.income {
+    color: #059669;
+}
+
+.transaction-amount.expense {
+    color: #dc2626;
+}
+
+.transaction-action-btn {
     padding: 6px 12px;
     background: white;
     color: #8B5CF6;
@@ -376,7 +344,7 @@
     transition: all 0.3s ease;
 }
 
-.pay-bill-btn:hover {
+.transaction-action-btn:hover {
     background: #6546dd;
     color: #ffffff;
     border-color: #6546dd;
@@ -384,7 +352,7 @@
 
 /* ---------- Pagination ---------- */
 
-.bills-pagination {
+.transactions-pagination {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -416,7 +384,7 @@
 }
 
 .page-btn.active {
-    background: linear-gradient(135deg, #8B5F6 0%, #6366F1 100%);
+    background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
     color: white;
     border-color: transparent;
 }
@@ -428,8 +396,7 @@
 
 /* ---------- Right Column Cards ---------- */
 
-.emi-overview-card,
-.ai-payment-card {
+.insights-card {
     background: white;
     border-radius: 16px;
     padding: 20px;
@@ -467,58 +434,7 @@
     color: white;
 }
 
-.emi-item {
-    margin-bottom: 16px;
-}
-
-.emi-name {
-    font-weight: 600;
-    color: #172033;
-    margin-bottom: 4px;
-}
-
-.emi-monthly {
-    font-size: 13px;
-    color: #66758f;
-    margin-bottom: 8px;
-}
-
-.emi-progress-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-}
-
-.emi-progress {
-    flex: 1;
-    height: 6px;
-    background: #e0e5ef;
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.emi-progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #8B5CF6 0%, #6366F1 100%);
-    border-radius: 3px;
-    transition: width 0.5s ease;
-}
-
-.emi-progress-percent {
-    font-size: 12px;
-    font-weight: 600;
-    color: #66758f;
-}
-
-.emi-bottom {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #66758f;
-}
-
-.ai-insight {
+.insight-item {
     display: flex;
     gap: 12px;
     padding: 12px;
@@ -527,22 +443,22 @@
     margin-bottom: 12px;
 }
 
-.ai-insight-icon {
+.insight-icon {
     font-size: 20px;
 }
 
-.ai-insight-content {
+.insight-content {
     flex: 1;
 }
 
-.ai-insight-content strong {
+.insight-content strong {
     display: block;
     font-size: 13px;
     color: #172033;
     margin-bottom: 4px;
 }
 
-.ai-insight-content p {
+.insight-content p {
     font-size: 12px;
     color: #66758f;
     margin: 0;
@@ -568,7 +484,7 @@
 }
 
 /* =========================================================
-   BILL/EMI MODAL STYLES
+   TRANSACTION MODAL STYLES
 ========================================================= */
 
 .modal {
@@ -590,6 +506,22 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+}
+
+#transactionModalOverlay {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#transactionModalOverlay.active {
+    display: block !important;
 }
 
 .modal-content {
@@ -635,7 +567,7 @@
     color: #1e293b;
 }
 
-.bill-form {
+.transaction-form {
     padding: 24px;
 }
 
@@ -696,12 +628,33 @@
     padding-right: 40px;
 }
 
-.emi-field {
-    display: none;
+.type-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
 }
 
-.emi-field.visible {
-    display: flex;
+.type-option {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.type-option.selected {
+    border-color: #8B5CF6;
+    background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+    color: white;
+}
+
+.type-option input {
+    display: none;
 }
 
 .form-actions {
@@ -778,40 +731,40 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .bills-content-grid {
+    .transactions-content-grid {
         grid-template-columns: 1fr;
         height: auto;
     }
 
-    .bills-right-column {
+    .transactions-right-column {
         display: none;
     }
 }
 
 @media (max-width: 768px) {
-    .bills-panel {
+    .transactions-panel {
         padding: 16px;
     }
 
-    .bill-summary-grid {
+    .transaction-summary-grid {
         grid-template-columns: 1fr;
     }
 
-    .bills-toolbar {
+    .transactions-toolbar {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .bill-tabs {
+    .transaction-tabs {
         overflow-x: auto;
         flex-wrap: nowrap;
     }
 
-    .bill-search-area {
+    .transaction-search-area {
         width: 100%;
     }
 
-    .bill-search {
+    .transaction-search {
         flex: 1;
     }
 

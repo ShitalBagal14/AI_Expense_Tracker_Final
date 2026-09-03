@@ -1,51 +1,307 @@
 <section class="module-panel transactions-panel hidden" data-panel="transactions-panel">
-                    <div class="module-card card-glow">
-                        <div class="module-header">
-                            <h2>Transactions</h2>
-                            <p>Review your latest income and expense items.</p>
-                        </div>
-                        <div class="table-scroll">
-                            <table class="transactions-table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Type</th>
-                                        <th>Category</th>
-                                        <th>Description</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>05 Jul 2025</td>
-                                        <td class="type expense">Expense</td>
-                                        <td>Food & Dining</td>
-                                        <td>Lunch at Restaurant</td>
-                                        <td>- ₹320</td>
-                                    </tr>
-                                    <tr>
-                                        <td>04 Jul 2025</td>
-                                        <td class="type expense">Expense</td>
-                                        <td>Transportation</td>
-                                        <td>Uber Ride</td>
-                                        <td>- ₹650</td>
-                                    </tr>
-                                    <tr>
-                                        <td>03 Jul 2025</td>
-                                        <td class="type income">Income</td>
-                                        <td>Salary</td>
-                                        <td>July Salary</td>
-                                        <td>+ ₹50,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>03 Jul 2025</td>
-                                        <td class="type expense">Expense</td>
-                                        <td>Utilities</td>
-                                        <td>Electricity Bill</td>
-                                        <td>- ₹1,250</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+    <!-- HEADER -->
+    <div class="transactions-header">
+
+        <div class="transactions-title-area">
+            <h2>💰 Transactions</h2>
+            <p>Review and manage all your income and expense transactions.</p>
+        </div>
+
+        <button class="add-transaction-btn" id="openTransactionModal">
+            <i class="fa-solid fa-plus"></i>
+            Add Transaction
+        </button>
+
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+    <div class="transaction-summary-grid">
+
+        <div class="transaction-summary-card">
+
+            <div class="summary-icon green">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Total Income</div>
+                <div class="summary-value" id="totalIncome">₹0</div>
+                <div class="summary-description" id="incomeCount">
+                    0 Income transactions
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+
+        <div class="transaction-summary-card">
+
+            <div class="summary-icon red">
+                <i class="fa-solid fa-arrow-trend-down"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Total Expenses</div>
+                <div class="summary-value" id="totalExpenses">₹0</div>
+                <div class="summary-description" id="expenseCount">
+                    0 Expense transactions
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+
+        <div class="transaction-summary-card">
+
+            <div class="summary-icon blue">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Net Balance</div>
+                <div class="summary-value" id="netBalance">₹0</div>
+                <div class="summary-description">
+                    This month
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+
+        <div class="transaction-summary-card">
+
+            <div class="summary-icon purple">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div class="summary-content">
+                <div class="summary-label">Total Transactions</div>
+                <div class="summary-value" id="totalTransactions">0</div>
+                <div class="summary-description">
+                    All time
+                </div>
+            </div>
+
+            <span class="summary-arrow">›</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="transactions-content-grid">
+
+        <!-- LEFT -->
+        <div class="transactions-list-card">
+
+            <!-- TOOLBAR -->
+            <div class="transactions-toolbar">
+
+                <div class="transaction-tabs">
+
+                    <button class="transaction-tab active" data-filter="all">
+                        All
+                    </button>
+
+                    <button class="transaction-tab" data-filter="income">
+                        Income
+                    </button>
+
+                    <button class="transaction-tab" data-filter="expense">
+                        Expenses
+                    </button>
+
+                </div>
+
+
+                <div class="transaction-search-area">
+
+                    <input
+                        type="text"
+                        id="transactionSearch"
+                        class="transaction-search"
+                        placeholder="🔍  Search transactions..."
+                    >
+
+                    <button class="transaction-filter-btn">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="transactions-table-wrapper">
+
+                <table class="transactions-table">
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="transactionsTableBody">
+
+                        <!-- JS will insert transactions here -->
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px;">
+                                <div style="color: #64748b; font-size: 14px;">
+                                    Loading transactions...
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+            <div class="transactions-pagination">
+
+                <span class="pagination-info" id="transactionsPaginationInfo">
+                    Showing 0 transactions
+                </span>
+
+                <div class="pagination-buttons">
+
+                    <button class="page-btn">
+                        ‹
+                    </button>
+
+                    <button class="page-btn active">
+                        1
+                    </button>
+
+                    <button class="page-btn">
+                        2
+                    </button>
+
+                    <button class="page-btn">
+                        3
+                    </button>
+
+                    <button class="page-btn">
+                        ›
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT COLUMN -->
+        <div class="transactions-right-column">
+
+
+            <!-- TRANSACTION INSIGHTS -->
+            <div class="insights-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        ✨ Transaction Insights
+                    </h3>
+
+                    <button class="view-all-btn">
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div class="insight-item">
+
+                    <div class="insight-icon">
+                        📊
                     </div>
-                </section>
+
+                    <div class="insight-content">
+
+                        <strong>
+                            Spending Trends
+                        </strong>
+
+                        <p id="spendingTrend">
+                            Add transactions to see your spending patterns.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="insight-item">
+
+                    <div class="insight-icon">
+                        💡
+                    </div>
+
+                    <div class="insight-content">
+
+                        <strong>
+                            Top Spending Category
+                        </strong>
+
+                        <p id="topCategory">
+                            Add transactions to identify your top category.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="insight-item">
+
+                    <div class="insight-icon">
+                        🎯
+                    </div>
+
+                    <div class="insight-content">
+
+                        <strong>
+                            Savings Potential
+                        </strong>
+
+                        <p>
+                            Track expenses to optimize your savings.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button class="analysis-btn">
+                    View Detailed Analysis
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

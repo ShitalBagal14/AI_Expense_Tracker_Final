@@ -8,8 +8,9 @@ import { initExpenses } from './modules/expenses.js';
 import { initBudget } from './modules/budget.js';
 import { initSavings } from './modules/savings.js';
 import { initBills } from './modules/bills.js';
-import { initReports } from './modules/reports.js';
+// Reports completely disabled - handled by standalone script only
 import { initAi } from './modules/ai.js';
+import { initAiInsights } from './modules/ai-insights.js';
 import { initTransactions } from './modules/transactions.js';
 import { initSettings } from './modules/settings.js';
 
@@ -167,15 +168,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // REPORTS
     // ==============================
 
-    try {
-
-        initReports();
-
-    } catch (error) {
-
-        console.error("Reports initialization failed:", error);
-
-    }
+    // Reports completely disabled - handled by standalone script only (reports-charts.js)
+    console.log("Reports module skipped - handled by standalone script");
 
 
     // ==============================
@@ -189,6 +183,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
 
         console.error("AI initialization failed:", error);
+
+    }
+
+
+    // ==============================
+    // AI INSIGHTS
+    // ==============================
+
+    try {
+
+        initAiInsights();
+
+    } catch (error) {
+
+        console.error("AI Insights initialization failed:", error);
 
     }
 

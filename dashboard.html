@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/modules/base.css">
     <link rel="stylesheet" href="css/modules/layout.css">
     <link rel="stylesheet" href="css/modules/shared.css">
+    <link rel="stylesheet" href="css/modules/dashboard-module.css">
 
     <!-- Module CSS -->
     <link rel="stylesheet" href="css/modules/income.css">
@@ -27,10 +28,18 @@
     <link rel="stylesheet" href="css/modules/bills.css">
     <link rel="stylesheet" href="css/modules/reports.css">
     <link rel="stylesheet" href="css/modules/ai.css">
+    <link rel="stylesheet" href="css/modules/ai-insights.css">
+    <link rel="stylesheet" href="css/modules/transactions.css">
     <link rel="stylesheet" href="css/modules/settings.css">
 
     <!-- Responsive CSS MUST BE LAST -->
     <link rel="stylesheet" href="css/modules/responsive.css">
+
+    <!-- Debugging -->
+    <script>
+        console.log("Dashboard HTML loaded");
+        console.log("Document ready state:", document.readyState);
+    </script>
 </head>
 <body>
 
@@ -60,12 +69,30 @@
     <!-- Bill / EMI Modal -->
     <div id="bill-modal-container"></div>
 
+    <!-- Transaction Modal -->
+    <div id="transaction-modal-container"></div>
 
-    <!-- Chart.js -->
+
+    <!-- Chart.js - Load regular version for better compatibility -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
 
     <!-- Dashboard JS -->
     <script type="module" src="js/dashboard.js"></script>
+
+    <!-- Reports Charts - Standalone script for direct chart rendering (loaded after dashboard) -->
+    <script src="js/reports-charts.js"></script>
+
+    <!-- Inline script to ensure Chart is available -->
+    <script>
+        // Wait for Chart.js to load
+        window.addEventListener('load', function() {
+            console.log('Window loaded, Chart available:', typeof Chart);
+            if (typeof Chart !== 'undefined') {
+                window.ChartLib = Chart;
+                console.log('Chart library assigned to window.ChartLib');
+            }
+        });
+    </script>
 
 </body>
 </html>

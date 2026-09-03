@@ -7,6 +7,7 @@ const MODULE_PARTIALS = [
     'partials/modules/bills-panel.html',
     'partials/modules/reports-panel.html',
     'partials/modules/ai-panel.html',
+    'partials/modules/ai-insights-panel.html',
     'partials/modules/transactions-panel.html',
     'partials/modules/settings-panel.html'
 ];
@@ -16,13 +17,15 @@ export const loadModules = async () => {
     const topbarContainer = document.getElementById('topbar-container');
     const modulesContainer = document.getElementById('modules-container');
     const billModalContainer = document.getElementById('bill-modal-container');
+    const transactionModalContainer = document.getElementById('transaction-modal-container');
 
     const { loadHtml } = await import('./utils.js');
 
     await Promise.all([
         loadHtml('partials/sidebar.html', sidebarContainer),
         loadHtml('partials/topbar.html', topbarContainer),
-        loadHtml('partials/modules/bill-modal.html', billModalContainer)
+        loadHtml('partials/modules/bill-modal.html', billModalContainer),
+        loadHtml('partials/modules/transaction-modal.html', transactionModalContainer)
     ]);
 
     for (const url of MODULE_PARTIALS) {
